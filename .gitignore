@@ -1,0 +1,12 @@
+# Local development tools
+.wrangler/
+.dev.vars
+.env
+.env.*
+!.env.example
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
