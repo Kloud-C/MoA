@@ -38,7 +38,9 @@
     }
     .header-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.25rem; font-weight: 850; letter-spacing: -.05em; }
-    .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 12px; background: var(--mint-600); color: white; font-size: 1rem; }
+    .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 12px; background: var(--mint-600); color: white; }
+    .brand-mark svg { display: block; width: 26px; height: 26px; overflow: visible; }
+    .brand-mark path { fill: none; stroke: currentColor; stroke-width: 3.7; stroke-linecap: round; stroke-linejoin: round; }
     .nav { display: flex; align-items: center; gap: 28px; color: #52665c; font-size: .92rem; font-weight: 650; }
     .nav a:hover, .footer-links a:hover { color: var(--mint-700); }
 
