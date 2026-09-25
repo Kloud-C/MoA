@@ -45,6 +45,95 @@
     }
   };
 
+  // Shared one-question-at-a-time flow for the classic radio-button quizzes.
+  const setupSteppedForm = (form) => {
+    const questions = [...form.querySelectorAll(".field-question")];
+    const submit = form.querySelector('button[type="submit"]');
+    if (!questions.length || !submit) return { reset() {} };
+    let current = 0;
+    const progressWrap = document.createElement("div");
+    progressWrap.className = "archetype-progress";
+    progressWrap.innerHTML = '<div class="progress-row"><span>나의 선택</span><span data-flow-count></span></div><progress data-flow-progress aria-label="테스트 진행 상황"></progress>';
+    const stage = document.createElement("div");
+    stage.className = "archetype-stage";
+    stage.setAttribute("aria-live", "polite");
+    const navigation = document.createElement("div");
+    navigation.className = "archetype-navigation";
+    const back = document.createElement("button");
+    back.type = "button";
+    back.className = "button button-quiet";
+    back.textContent = "← 이전";
+    const firstQuestion = questions[0];
+    firstQuestion.before(progressWrap, stage);
+    questions.forEach((question) => stage.append(question));
+    const error = form.querySelector(".form-message");
+    if (error) error.before(navigation);
+    navigation.append(back, submit);
+    submit.hidden = true;
+    questions.forEach((question, index) => {
+      question.classList.add("quiz-step-question");
+      question.querySelectorAll(".radio-line").forEach((choice) => choice.classList.add("quiz-step-choice"));
+      question.hidden = index !== 0;
+    });
+
+    const render = (animate = false) => {
+      const question = questions[current];
+      question.hidden = false;
+      questions.forEach((item, index) => { if (index !== current) item.hidden = true; });
+      const progress = progressWrap.querySelector("[data-flow-progress]");
+      progress.max = questions.length;
+      progress.value = current + 1;
+      progressWrap.querySelector("[data-flow-count]").textContent = `${current + 1} / ${questions.length}`;
+      back.disabled = current === 0;
+      back.hidden = current === 0;
+      if (animate) {
+        stage.classList.remove("archetype-stage--leaving");
+        stage.classList.add("archetype-stage--entering");
+        requestAnimationFrame(() => requestAnimationFrame(() => stage.classList.remove("archetype-stage--entering")));
+      }
+    };
+    let moving = false;
+    const move = (direction) => {
+      if (moving) return;
+      if (direction < 0 && current === 0) return;
+      moving = true;
+      stage.classList.add("archetype-stage--leaving");
+      window.setTimeout(() => {
+        if (direction > 0 && current === questions.length - 1) {
+          moving = false;
+          form.requestSubmit();
+          return;
+        }
+        current += direction;
+        render(true);
+        moving = false;
+        stage.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 160);
+    };
+    form.addEventListener("change", (event) => {
+      const question = event.target.closest(".field-question");
+      if (!question) return;
+      question.classList.remove("field-question--error");
+      question.removeAttribute("aria-invalid");
+      question.querySelector(".question-error")?.remove();
+      if (question !== questions[current] || !question.querySelector('input[type="radio"]:checked')) return;
+      move(1);
+    });
+    back.addEventListener("click", () => move(-1));
+    render();
+    return {
+      reset() {
+        current = 0;
+        questions.forEach((question) => {
+          question.classList.remove("field-question--error");
+          question.removeAttribute("aria-invalid");
+          question.querySelector(".question-error")?.remove();
+        });
+        render();
+      }
+    };
+  };
+
   const worldcup = document.querySelector("#worldcup-game");
   if (worldcup) {
     const activities = [
@@ -63,17 +152,28 @@
     const progress = document.querySelector("#game-progress");
     const result = document.querySelector("#worldcup-result");
     const status = document.querySelector("#worldcup-status");
+    options.classList.add("archetype-stage");
+    const back = document.createElement("button");
+    back.type = "button";
+    back.className = "button button-quiet worldcup-back";
+    back.textContent = "← 이전 선택";
+    back.disabled = true;
+    options.after(back);
     let round = activities;
     let winners = [];
+    const history = [];
     let matchIndex = 0;
     let finished = false;
+    let moving = false;
 
     const roundName = (size) => ({ 8: "1라운드 · 8강", 4: "2라운드 · 4강", 2: "3라운드 · 결승" })[size] || "선택";
-    const renderMatch = () => {
+    const renderMatch = (animate = false) => {
       const left = round[matchIndex * 2];
       const right = round[matchIndex * 2 + 1];
       label.textContent = roundName(round.length);
       count.textContent = `${progress.value + 1} / 7`;
+      back.disabled = history.length === 0 || moving;
+      back.hidden = history.length === 0;
       options.replaceChildren();
       [left, right].forEach((activity) => {
         const button = document.createElement("button");
@@ -83,41 +183,61 @@
         button.addEventListener("click", () => choose(activity));
         options.append(button);
       });
+      if (animate) {
+        options.classList.remove("archetype-stage--leaving");
+        options.classList.add("archetype-stage--entering");
+        requestAnimationFrame(() => requestAnimationFrame(() => options.classList.remove("archetype-stage--entering")));
+      }
     };
     const choose = (activity) => {
-      if (finished) return;
+      if (finished || moving) return;
+      moving = true;
+      history.push({ round: [...round], winners: [...winners], matchIndex, progress: progress.value });
+      back.disabled = true;
       winners.push(activity);
-      progress.value += 1;
-      matchIndex += 1;
-      if (matchIndex < round.length / 2) {
-        renderMatch();
-        return;
-      }
-      if (winners.length === 1) {
-        showWinner(winners[0]);
-        return;
-      }
-      round = winners;
-      winners = [];
-      matchIndex = 0;
-      renderMatch();
+      options.classList.add("archetype-stage--leaving");
+      window.setTimeout(() => {
+        progress.value += 1;
+        matchIndex += 1;
+        if (matchIndex < round.length / 2) {
+          renderMatch(true);
+          moving = false;
+          back.disabled = history.length === 0;
+          return;
+        }
+        if (winners.length === 1) {
+          moving = false;
+          showWinner(winners[0]);
+          return;
+        }
+        round = winners;
+        winners = [];
+        matchIndex = 0;
+        renderMatch(true);
+        moving = false;
+        back.disabled = history.length === 0;
+      }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 160);
     };
     const showWinner = (winner) => {
       finished = true;
       options.hidden = true;
       label.textContent = "오늘의 선택";
       count.textContent = "7 / 7 완료";
+      back.disabled = history.length === 0;
+      back.hidden = false;
       result.hidden = false;
-      result.innerHTML = `<span class="eyebrow-text">당신이 고른 주말</span><div class="result-hero"><img class="result-photo" src="${winner.image}" alt="${winner.name}" loading="lazy"><div><h3>${winner.name}</h3><p>${winner.detail}</p></div></div><p>이번 주말에는 이 시간을 작게라도 일정에 넣어 보세요. 가까운 장소와 부담 없는 시간부터 정하면 바로 시작할 수 있어요.</p><div class="result-actions"><button class="button button-small" type="button" data-restart>다시 하기</button><button class="button button-small button-quiet" type="button" data-share>공유 문구 복사</button></div>`;
-      result.querySelector(".result-photo").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
+      result.innerHTML = `<article class="archetype-result-card"><div class="archetype-result-card__top"><span class="archetype-result-card__brand">MOA PLAY · 주말 취향 월드컵</span><img class="archetype-result-card__image" src="${winner.image}" alt="${winner.name} 이미지" loading="lazy"><p class="archetype-result-card__label">내가 원하는 주말</p><h3 tabindex="-1">${winner.name}</h3><p class="archetype-result-card__catchphrase">${winner.detail}</p></div><div class="archetype-result-card__body"><p>이번 주말에는 이 시간을 작게라도 일정에 넣어 보세요. 가까운 장소와 부담 없는 시간부터 정하면 바로 시작할 수 있어요.</p></div></article><div class="result-actions"><button class="button button-small" type="button" data-restart>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>결과 공유 문구 복사</button></div>`;
+      result.querySelector(".archetype-result-card__image").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
       result.querySelector("[data-restart]").addEventListener("click", reset);
       result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText("내가 주말에 하고 싶은 건 [" + winner.name + "] !!", "https://moa-dej.pages.dev/worldcup.html"), status));
     };
     function reset() {
       round = activities;
       winners = [];
+      history.length = 0;
       matchIndex = 0;
       finished = false;
+      moving = false;
       progress.value = 0;
       result.hidden = true;
       result.replaceChildren();
@@ -126,12 +246,26 @@
       renderMatch();
       document.querySelector("#game-heading").focus({ preventScroll: true });
     }
+    back.addEventListener("click", () => {
+      if (moving || !history.length) return;
+      const previous = history.pop();
+      round = previous.round;
+      winners = previous.winners;
+      matchIndex = previous.matchIndex;
+      progress.value = previous.progress;
+      finished = false;
+      result.hidden = true;
+      result.replaceChildren();
+      options.hidden = false;
+      renderMatch(true);
+    });
     renderMatch();
   }
 
   const animalForm = document.querySelector("#animal-quiz");
   if (animalForm) {
     const validateQuestions = prepareQuestionValidation(animalForm);
+    const questionFlow = setupSteppedForm(animalForm);
     const profiles = {
       dog: { name: "강아지형", emoji: "🐕", image: "image/animal image/동물상 테스트：강아지.jpg", text: "정이 많고 함께하는 시간을 소중히 여기는 다정한 분위기예요.", love: "좋아하는 사람에게 자주 마음을 표현하고 함께하는 추억을 쌓아요.", work: "팀의 분위기를 부드럽게 만들고 서로 협력하도록 돕는 편이에요." },
       cat: { name: "고양이형", emoji: "🐈", image: "image/animal image/동물상 테스트：고양이.jpg", text: "자기만의 리듬과 취향이 분명한 차분한 분위기예요.", love: "서두르기보다 편안함과 신뢰가 쌓일 때 마음을 열어요.", work: "혼자 집중할 시간이 주어지면 꼼꼼하게 결과물을 완성해요." },
@@ -159,16 +293,19 @@
       const winners = Object.keys(scores).filter((key) => scores[key] === highest);
       const winner = winners[Math.floor(Math.random() * winners.length)];
       const result = document.querySelector("#animal-result");
-      result.innerHTML = `<span class="eyebrow-text">당신의 동물 캐릭터</span><div class="result-hero"><img class="result-photo" src="${profiles[winner].image}" alt="${profiles[winner].name} 사진" loading="lazy"><div><h3>${profiles[winner].emoji} ${profiles[winner].name}</h3><p>${profiles[winner].text}</p></div></div><div class="info-grid"><article class="info-card"><h3>연애 모드 💌</h3><p>${profiles[winner].love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profiles[winner].work}</p></article></div><p>재미로 보는 캐릭터 결과예요.</p><div class="result-actions"><button class="button button-small button-quiet" type="button" data-retry>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite"></p>`;
-      result.querySelector(".result-photo").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
+      result.innerHTML = `<article class="archetype-result-card"><div class="archetype-result-card__top"><span class="archetype-result-card__brand">MOA PLAY · 동물상 테스트</span><img class="archetype-result-card__image" src="${profiles[winner].image}" alt="${profiles[winner].name} 결과 이미지" loading="lazy"><p class="archetype-result-card__label">나의 동물 캐릭터</p><h3 tabindex="-1">${profiles[winner].emoji} ${profiles[winner].name}</h3><p class="archetype-result-card__catchphrase">${profiles[winner].text}</p></div><div class="archetype-result-card__body"><div class="info-grid"><article class="info-card"><h3>연애 모드 💌</h3><p>${profiles[winner].love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profiles[winner].work}</p></article></div></div></article><div class="result-actions"><button class="button button-small" type="button" data-retry>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>결과 공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite"></p>`;
+      result.querySelector(".archetype-result-card__image").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
       result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText("이번 테스트 결과는 [" + profiles[winner].name + "] !!", "https://moa-dej.pages.dev/animal-test.html"), result.querySelector(".share-status")));
       result.hidden = false;
+      animalForm.hidden = true;
       document.querySelector("#animal-error").textContent = "";
       result.querySelector("[data-retry]").addEventListener("click", () => {
         animalForm.reset();
+        animalForm.hidden = false;
+        questionFlow.reset();
         result.hidden = true;
         document.querySelector("#animal-error").textContent = "";
-        animalForm.querySelector("button[type=submit]").focus();
+        animalForm.querySelector('input[type="radio"]').focus({ preventScroll: true });
       });
       result.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
@@ -177,6 +314,7 @@
   const mbtiForm = document.querySelector("#mbti-quiz");
   if (mbtiForm) {
     const validateQuestions = prepareQuestionValidation(mbtiForm);
+    const questionFlow = setupSteppedForm(mbtiForm);
     const axes = [
       { names: ["ei1", "ei2", "ei3", "ei4", "ei5"], a: "E", b: "I", title: "에너지를 얻고 표현하는 방식" },
       { names: ["sn1", "sn2", "sn3", "sn4", "sn5"], a: "S", b: "N", title: "정보를 살피는 방식" },
@@ -218,16 +356,19 @@
       }).join("");
       const result = document.querySelector("#mbti-result");
       const profile = typeProfiles[summary];
-      result.innerHTML = `<span class="eyebrow-text">당신의 결과</span><div class="result-hero"><img class="result-photo" src="${profile.image}" alt="${summary} 결과 이미지" loading="lazy"><div><span class="result-type">${summary}</span><h3>${profile.title}</h3><p>${profile.intro}</p></div></div><div class="info-grid"><article class="info-card"><h3>평소의 당신 ☀️</h3><p>${profile.daily}</p></article><article class="info-card"><h3>연애 모드 💌</h3><p>${profile.love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profile.work}</p></article></div><p>재미로 보는 모아의 자체 성향 놀이 결과예요. 같은 유형이어도 사람마다 다르게 표현될 수 있어요.</p><div class="result-actions"><button class="button button-small button-quiet" type="button" data-retry>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite"></p>`;
-      result.querySelector(".result-photo").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
+      result.innerHTML = `<article class="archetype-result-card"><div class="archetype-result-card__top"><span class="archetype-result-card__brand">MOA PLAY · MBTI</span><img class="archetype-result-card__image" src="${profile.image}" alt="MBTI ${summary} 결과 이미지" loading="lazy"><p class="archetype-result-card__label">당신의 MBTI</p><h3 tabindex="-1">${summary} · ${profile.title}</h3><p class="archetype-result-card__catchphrase">${profile.intro}</p></div><div class="archetype-result-card__body"><div class="info-grid"><article class="info-card"><h3>평소의 당신 ☀️</h3><p>${profile.daily}</p></article><article class="info-card"><h3>연애 모드 💌</h3><p>${profile.love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profile.work}</p></article></div></div></article><div class="result-actions"><button class="button button-small" type="button" data-retry>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>결과 공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite"></p>`;
+      result.querySelector(".archetype-result-card__image").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
       result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText("나의 MBTI는 [" + summary + "] !!", "https://moa-dej.pages.dev/mbti.html"), result.querySelector(".share-status")));
       result.hidden = false;
+      mbtiForm.hidden = true;
       document.querySelector("#mbti-error").textContent = "";
       result.querySelector("[data-retry]").addEventListener("click", () => {
         mbtiForm.reset();
+        mbtiForm.hidden = false;
+        questionFlow.reset();
         result.hidden = true;
         document.querySelector("#mbti-error").textContent = "";
-        mbtiForm.querySelector("button[type=submit]").focus();
+        mbtiForm.querySelector('input[type="radio"]').focus({ preventScroll: true });
       });
       result.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
