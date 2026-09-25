@@ -62,9 +62,15 @@
     const tied = Object.keys(scores).filter((key) => scores[key] === highScore);
     // Resolve ties from the full answer pattern so the same answers always
     // produce the same result without favoring the final few questions.
-    const answerMask = answers.reduce((mask, answer, index) => mask | (answer << index), 0);
-    const winner = tied[answerMask % tied.length];
+    // Hash the complete answer pattern without 32-bit bitwise truncation. The
+    // mixed-radix step also handles questions that offer more than two choices.
+    const answerSeed = answers.reduce((seed, answer, index) => (
+      seed * config.questions[index].choices.length + answer
+    ) % tied.length, 0);
+    const winner = tied[answerSeed];
     const profile = config.profiles[winner];
+    const imagePath = profile.image || profile.imageFile;
+    const imageCredit = config.imageCredits?.[winner];
     const compatNames = (ids) => ids.map((id) => config.profiles[id].name).join(" · ");
     const extraContent = profile.details?.length
       ? `<div class="info-grid archetype-result-card__details">${profile.details.map((item) => `<article class="info-card"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></article>`).join("")}</div>`
@@ -74,7 +80,7 @@
     root.querySelector("[data-quiz-progress-wrap]").hidden = true;
     stage.hidden = true;
     result.style.setProperty("--result-accent", profile.color);
-    result.innerHTML = `<article class="archetype-result-card"><div class="archetype-result-card__top"><span class="archetype-result-card__brand">MOA PLAY · ${escapeHtml(config.title)}</span><span class="archetype-result-card__emoji" aria-hidden="true">${profile.emoji}</span><p class="archetype-result-card__label">나의 오늘 유형</p><h3 tabindex="-1">${escapeHtml(profile.name)}</h3><p class="archetype-result-card__catchphrase">${escapeHtml(profile.catchphrase)}</p></div><div class="archetype-result-card__body"><p>${escapeHtml(profile.description)}</p>${extraContent}</div></article><div class="result-actions"><button class="button button-small" type="button" data-quiz-restart>다시 해보기</button><button class="button button-small button-quiet" type="button" data-quiz-share>결과 공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite" data-quiz-share-status></p>`;
+    result.innerHTML = `<article class="archetype-result-card"><div class="archetype-result-card__top"><span class="archetype-result-card__brand">MOA PLAY · ${escapeHtml(config.title)}</span>${imagePath ? `<img class="archetype-result-card__image" src="${escapeHtml(imagePath)}" alt="${escapeHtml(profile.name)} 결과 이미지" loading="lazy" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true"> <span class="archetype-result-card__emoji" aria-hidden="true">${profile.emoji}</span>${imageCredit ? `<p class="image-credit">이미지 출처: <a href="${escapeHtml(imageCredit.source)}" target="_blank" rel="noopener noreferrer">${escapeHtml(imageCredit.artist)}</a> · <a href="${escapeHtml(imageCredit.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(imageCredit.license)}</a></p>` : ""}` : `<span class="archetype-result-card__emoji" aria-hidden="true">${profile.emoji}</span>`}<p class="archetype-result-card__label">나의 전생 캐릭터</p><h3 tabindex="-1">${escapeHtml(profile.name)}</h3><p class="archetype-result-card__catchphrase">${escapeHtml(profile.catchphrase)}</p></div><div class="archetype-result-card__body"><p>${escapeHtml(profile.description)}</p>${extraContent}</div></article><div class="result-actions"><button class="button button-small" type="button" data-quiz-restart>다시 해보기</button><button class="button button-small button-quiet" type="button" data-quiz-share>결과 공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite" data-quiz-share-status></p>`;
     result.hidden = false;
     result.querySelector("h3").focus({ preventScroll: true });
     result.querySelector("[data-quiz-restart]").addEventListener("click", () => {
