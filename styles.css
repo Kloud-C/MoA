@@ -170,7 +170,7 @@
     .result { padding: 22px; border: 1px solid var(--mint-200); border-radius: 16px; background: linear-gradient(135deg, var(--mint-100), white); }
     .result h2, .result h3 { margin-top: 0; }
     .result-hero { display: grid; grid-template-columns: minmax(180px, .8fr) 1.2fr; align-items: center; gap: 22px; margin: 16px 0 22px; }
-    .result-photo { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 18px; background: var(--mint-100); }
+    .result-photo { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; border-radius: 18px; background: white; }
     .result-type { display: inline-block; margin-bottom: 8px; padding: 6px 10px; border-radius: 999px; background: white; color: var(--mint-700); font-weight: 850; letter-spacing: .08em; }
     .result-hero h3 { margin-bottom: 8px; font-size: clamp(1.3rem, 3vw, 1.8rem); }
     .result-hero p { margin-bottom: 0; }
@@ -178,7 +178,9 @@
     .result[hidden], [hidden] { display: none !important; }
     .result-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
     .field-question { margin: 15px 0; padding: 18px; border: 1px solid var(--line); border-radius: 15px; background: white; }
+    .field-question--error { border: 2px solid #c93535; background: #fffafa; }
     .field-question legend { padding: 0 5px; font-weight: 750; }
+    .question-error { margin: 12px 3px 0; color: #b42318; font-size: .9rem; font-weight: 750; }
     .radio-line { display: flex; align-items: flex-start; gap: 9px; padding: 8px 3px; color: #4e6258; cursor: pointer; }
     .radio-line input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--mint-600); flex: 0 0 auto; }
     .form-message { min-height: 1.5em; margin: 8px 0; color: #a33d3d; font-size: .9rem; }

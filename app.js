@@ -1,4 +1,40 @@
 (() => {
+  const prepareQuestionValidation = (form) => {
+    form.noValidate = true;
+    form.addEventListener("change", (event) => {
+      const field = event.target.closest(".field-question");
+      if (!field || !field.querySelector('input[type="radio"]:checked')) return;
+      field.classList.remove("field-question--error");
+      field.removeAttribute("aria-invalid");
+      field.querySelector(".question-error")?.remove();
+    });
+    return () => {
+      let firstMissing = null;
+      form.querySelectorAll(".field-question").forEach((field) => {
+        const missing = !field.querySelector('input[type="radio"]:checked');
+        field.classList.toggle("field-question--error", missing);
+        if (missing) {
+          field.setAttribute("aria-invalid", "true");
+          if (!field.querySelector(".question-error")) {
+            const message = document.createElement("p");
+            message.className = "question-error";
+            message.setAttribute("role", "alert");
+            message.textContent = "이 항목을 체크하지 않았습니다.";
+            field.append(message);
+          }
+          firstMissing ||= field;
+        } else {
+          field.removeAttribute("aria-invalid");
+          field.querySelector(".question-error")?.remove();
+        }
+      });
+      if (!firstMissing) return true;
+      firstMissing.querySelector('input[type="radio"]').focus({ preventScroll: true });
+      firstMissing.scrollIntoView({ behavior: "smooth", block: "center" });
+      return false;
+    };
+  };
+
   const worldcup = document.querySelector("#worldcup-game");
   if (worldcup) {
     const activities = [
@@ -93,6 +129,7 @@
 
   const animalForm = document.querySelector("#animal-quiz");
   if (animalForm) {
+    const validateQuestions = prepareQuestionValidation(animalForm);
     const profiles = {
       dog: { name: "강아지형", emoji: "🐕", image: "image/animal image/동물상 테스트：강아지.jpg", text: "정이 많고 함께하는 시간을 소중히 여기는 다정한 분위기예요.", love: "좋아하는 사람에게 자주 마음을 표현하고 함께하는 추억을 쌓아요.", work: "팀의 분위기를 부드럽게 만들고 서로 협력하도록 돕는 편이에요." },
       cat: { name: "고양이형", emoji: "🐈", image: "image/animal image/동물상 테스트：고양이.jpg", text: "자기만의 리듬과 취향이 분명한 차분한 분위기예요.", love: "서두르기보다 편안함과 신뢰가 쌓일 때 마음을 열어요.", work: "혼자 집중할 시간이 주어지면 꼼꼼하게 결과물을 완성해요." },
@@ -103,6 +140,7 @@
     };
     animalForm.addEventListener("submit", (event) => {
       event.preventDefault();
+      if (!validateQuestions()) return;
       const data = new FormData(animalForm);
       const scores = Object.fromEntries(Object.keys(profiles).map((key) => [key, 0]));
       for (let i = 1; i <= 10; i += 1) {
@@ -133,6 +171,7 @@
 
   const mbtiForm = document.querySelector("#mbti-quiz");
   if (mbtiForm) {
+    const validateQuestions = prepareQuestionValidation(mbtiForm);
     const axes = [
       { names: ["ei1", "ei2", "ei3", "ei4", "ei5"], a: "E", b: "I", title: "에너지를 얻고 표현하는 방식" },
       { names: ["sn1", "sn2", "sn3", "sn4", "sn5"], a: "S", b: "N", title: "정보를 살피는 방식" },
@@ -159,6 +198,7 @@
     };
     mbtiForm.addEventListener("submit", (event) => {
       event.preventDefault();
+      if (!validateQuestions()) return;
       const data = new FormData(mbtiForm);
       for (const axis of axes) {
         const answers = axis.names.map((name) => data.get(name));
