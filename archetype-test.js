@@ -4,6 +4,8 @@
 
   const config = window.MOA_ARCHETYPE_TESTS?.[root.dataset.archetypeTest];
   if (!config) return;
+  const tr = (text) => window.MOA_I18N?.t(text) || text;
+  const resultLabel = config.resultLabel || (root.dataset.archetypeTest === "past-life" ? "나의 전생 캐릭터" : "나의 결과 유형");
 
   const progress = root.querySelector("[data-quiz-progress]");
   const progressText = root.querySelector("[data-quiz-progress-text]");
@@ -23,13 +25,13 @@
     const question = config.questions[current];
     progress.max = config.questions.length;
     progress.value = current + 1;
-    progress.setAttribute("aria-valuetext", `${current + 1} / ${config.questions.length} 문항`);
+    progress.setAttribute("aria-valuetext", `${current + 1} / ${config.questions.length} ${tr("문항")}`);
     progressText.textContent = `${current + 1} / ${config.questions.length}`;
     backButton.disabled = current === 0;
     backButton.hidden = current === 0;
     error.textContent = "";
 
-    stage.innerHTML = `<fieldset class="archetype-question"><legend class="archetype-question__prompt" tabindex="-1">${escapeHtml(question.prompt)}</legend><div class="archetype-question__choices">${question.choices.map((choice, index) => `<button class="choice-button${answers[current] === index ? " is-selected" : ""}" type="button" data-choice="${index}" aria-pressed="${answers[current] === index}"><span class="choice-button__number">0${index + 1}</span><span>${escapeHtml(choice.text)}</span></button>`).join("")}</div></fieldset>`;
+    stage.innerHTML = `<fieldset class="archetype-question"><legend class="archetype-question__prompt" tabindex="-1">${escapeHtml(tr(question.prompt))}</legend><div class="archetype-question__choices">${question.choices.map((choice, index) => `<button class="choice-button${answers[current] === index ? " is-selected" : ""}" type="button" data-choice="${index}" aria-pressed="${answers[current] === index}"><span class="choice-button__number">0${index + 1}</span><span>${escapeHtml(tr(choice.text))}</span></button>`).join("")}</div></fieldset>`;
     if (animate) {
       stage.classList.remove("archetype-stage--leaving");
       stage.classList.add("archetype-stage--entering");
@@ -71,16 +73,16 @@
     const profile = config.profiles[winner];
     const imagePath = profile.image || profile.imageFile;
     const imageCredit = config.imageCredits?.[winner];
-    const compatNames = (ids) => ids.map((id) => config.profiles[id].name).join(" · ");
+    const compatNames = (ids) => ids.map((id) => tr(config.profiles[id].name)).join(" · ");
     const extraContent = profile.details?.length
-      ? `<div class="info-grid archetype-result-card__details">${profile.details.map((item) => `<article class="info-card"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></article>`).join("")}</div>`
-      : `<div class="archetype-result-card__compat"><div><span>찰떡 궁합</span><strong>${escapeHtml(compatNames(profile.good))}</strong></div><div><span>서로 알아가면 좋은 유형</span><strong>${escapeHtml(compatNames(profile.tricky))}</strong></div></div>`;
+      ? `<div class="info-grid archetype-result-card__details">${profile.details.map((item) => `<article class="info-card"><h3>${escapeHtml(tr(item.title))}</h3><p>${escapeHtml(tr(item.text))}</p></article>`).join("")}</div>`
+      : `<div class="archetype-result-card__compat"><div><span>${escapeHtml(tr("찰떡 궁합"))}</span><strong>${escapeHtml(compatNames(profile.good))}</strong></div><div><span>${escapeHtml(tr("서로 알아가면 좋은 유형"))}</span><strong>${escapeHtml(compatNames(profile.tricky))}</strong></div></div>`;
 
     root.querySelector("[data-quiz-navigation]").hidden = true;
     root.querySelector("[data-quiz-progress-wrap]").hidden = true;
     stage.hidden = true;
     result.style.setProperty("--result-accent", profile.color);
-    result.innerHTML = `<article class="archetype-result-card"><div class="archetype-result-card__top"><span class="archetype-result-card__brand">MOA PLAY · ${escapeHtml(config.title)}</span>${imagePath ? `<img class="archetype-result-card__image" src="${escapeHtml(imagePath)}" alt="${escapeHtml(profile.name)} 결과 이미지" loading="lazy" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true"> <span class="archetype-result-card__emoji" aria-hidden="true">${profile.emoji}</span>${imageCredit ? `<p class="image-credit">이미지 출처: <a href="${escapeHtml(imageCredit.source)}" target="_blank" rel="noopener noreferrer">${escapeHtml(imageCredit.artist)}</a> · <a href="${escapeHtml(imageCredit.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(imageCredit.license)}</a></p>` : ""}` : `<span class="archetype-result-card__emoji" aria-hidden="true">${profile.emoji}</span>`}<p class="archetype-result-card__label">나의 전생 캐릭터</p><h3 tabindex="-1">${escapeHtml(profile.name)}</h3><p class="archetype-result-card__catchphrase">${escapeHtml(profile.catchphrase)}</p></div><div class="archetype-result-card__body"><p>${escapeHtml(profile.description)}</p>${extraContent}</div></article><div class="result-actions"><button class="button button-small" type="button" data-quiz-restart>다시 해보기</button><button class="button button-small button-quiet" type="button" data-quiz-share>결과 공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite" data-quiz-share-status></p>`;
+    result.innerHTML = `<article class="archetype-result-card"><div class="archetype-result-card__top"><span class="archetype-result-card__brand">MOA PLAY · ${escapeHtml(tr(config.title))}</span>${imagePath ? `<img class="archetype-result-card__image" src="${escapeHtml(imagePath)}" alt="${escapeHtml(tr(profile.name))} 결과 이미지" loading="lazy" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true"> <span class="archetype-result-card__emoji" aria-hidden="true">${profile.emoji}</span>${imageCredit ? `<p class="image-credit">${escapeHtml(tr("이미지 출처:"))} <a href="${escapeHtml(imageCredit.source)}" target="_blank" rel="noopener noreferrer">${escapeHtml(imageCredit.artist)}</a> · <a href="${escapeHtml(imageCredit.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(imageCredit.license)}</a></p>` : ""}` : `<span class="archetype-result-card__emoji" aria-hidden="true">${profile.emoji}</span>`}<p class="archetype-result-card__label">${escapeHtml(tr(resultLabel))}</p><h3 tabindex="-1">${escapeHtml(tr(profile.name))}</h3><p class="archetype-result-card__catchphrase">${escapeHtml(tr(profile.catchphrase))}</p></div><div class="archetype-result-card__body"><p>${escapeHtml(tr(profile.description))}</p>${extraContent}</div></article><div class="result-actions"><button class="button button-small" type="button" data-quiz-restart>${escapeHtml(tr("다시 해보기"))}</button><button class="button button-small button-quiet" type="button" data-quiz-share>${escapeHtml(tr("결과 공유 문구 복사"))}</button></div><p class="share-status" role="status" aria-live="polite" data-quiz-share-status></p>`;
     result.hidden = false;
     result.querySelector("h3").focus({ preventScroll: true });
     result.querySelector("[data-quiz-restart]").addEventListener("click", () => {
@@ -94,12 +96,12 @@
     });
     result.querySelector("[data-quiz-share]").addEventListener("click", async () => {
       const status = result.querySelector("[data-quiz-share-status]");
-      const shareText = `${profile.name} · ${profile.catchphrase}\n---------------------------------------------------\n나도 테스트 해보고 싶다면?\n${config.url}`;
+      const shareText = `${tr(profile.name)} · ${tr(profile.catchphrase)}\n---------------------------------------------------\n${tr("나도 테스트 해보고 싶다면?")}\n${config.url}`;
       try {
         await navigator.clipboard.writeText(shareText);
-        status.textContent = "공유 문구를 복사했어요.";
+        status.textContent = tr("공유 문구를 복사했어요.");
       } catch {
-        status.textContent = "복사할 수 없어요. 결과 문구를 직접 공유해 주세요.";
+        status.textContent = tr("복사할 수 없어요. 결과 문구를 직접 공유해 주세요.");
       }
     });
   };

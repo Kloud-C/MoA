@@ -1,4 +1,5 @@
 (() => {
+  const tr = (text) => window.MOA_I18N?.t(text) || text;
   const prepareQuestionValidation = (form) => {
     form.noValidate = true;
     form.addEventListener("change", (event) => {
@@ -35,13 +36,13 @@
     };
   };
 
-  const formatShareText = (resultLine, url) => `${resultLine}\n---------------------------------------------------\n나도 테스트 해보고 싶다면?\n${url}`;
+  const formatShareText = (resultLine, url) => `${resultLine}\n---------------------------------------------------\n${tr("나도 테스트 해보고 싶다면?")}\n${url}`;
   const copyShareText = async (text, status) => {
     try {
       await navigator.clipboard.writeText(text);
-      status.textContent = "공유 문구를 복사했어요.";
+      status.textContent = tr("공유 문구를 복사했어요.");
     } catch {
-      status.textContent = "복사할 수 없어요. 결과 문구를 직접 공유해 주세요.";
+      status.textContent = tr("복사할 수 없어요. 결과 문구를 직접 공유해 주세요.");
     }
   };
 
@@ -53,7 +54,7 @@
     let current = 0;
     const progressWrap = document.createElement("div");
     progressWrap.className = "archetype-progress";
-    progressWrap.innerHTML = '<div class="progress-row"><span>나의 선택</span><span data-flow-count></span></div><progress data-flow-progress aria-label="테스트 진행 상황"></progress>';
+    progressWrap.innerHTML = `<div class="progress-row"><span>${tr("나의 선택")}</span><span data-flow-count></span></div><progress data-flow-progress aria-label="${tr("테스트 진행 상황")}"></progress>`;
     const stage = document.createElement("div");
     stage.className = "archetype-stage";
     stage.setAttribute("aria-live", "polite");
@@ -62,7 +63,7 @@
     const back = document.createElement("button");
     back.type = "button";
     back.className = "button button-quiet";
-    back.textContent = "← 이전";
+    back.textContent = tr("← 이전");
     const firstQuestion = questions[0];
     firstQuestion.before(progressWrap, stage);
     questions.forEach((question) => stage.append(question));
@@ -156,7 +157,7 @@
     const back = document.createElement("button");
     back.type = "button";
     back.className = "button button-quiet worldcup-back";
-    back.textContent = "← 이전 선택";
+    back.textContent = tr("← 이전 선택");
     back.disabled = true;
     options.after(back);
     let round = activities;
@@ -166,7 +167,7 @@
     let finished = false;
     let moving = false;
 
-    const roundName = (size) => ({ 8: "1라운드 · 8강", 4: "2라운드 · 4강", 2: "3라운드 · 결승" })[size] || "선택";
+    const roundName = (size) => tr(({ 8: "1라운드 · 8강", 4: "2라운드 · 4강", 2: "3라운드 · 결승" })[size] || "선택");
     const renderMatch = (animate = false) => {
       const left = round[matchIndex * 2];
       const right = round[matchIndex * 2 + 1];
@@ -179,7 +180,7 @@
         const button = document.createElement("button");
         button.type = "button";
         button.className = "choice-button";
-        button.innerHTML = `<strong>${activity.name}</strong><span>${activity.detail}</span>`;
+        button.innerHTML = `<strong>${tr(activity.name)}</strong><span>${tr(activity.detail)}</span>`;
         button.addEventListener("click", () => choose(activity));
         options.append(button);
       });
@@ -221,7 +222,7 @@
     const showWinner = (winner) => {
       finished = true;
       options.hidden = true;
-      label.textContent = "오늘의 선택";
+      label.textContent = tr("오늘의 선택");
       count.textContent = "7 / 7 완료";
       back.disabled = history.length === 0;
       back.hidden = false;
@@ -229,7 +230,7 @@
       result.innerHTML = `<article class="archetype-result-card"><div class="archetype-result-card__top"><span class="archetype-result-card__brand">MOA PLAY · 주말 취향 월드컵</span><img class="archetype-result-card__image" src="${winner.image}" alt="${winner.name} 이미지" loading="lazy"><p class="archetype-result-card__label">내가 원하는 주말</p><h3 tabindex="-1">${winner.name}</h3><p class="archetype-result-card__catchphrase">${winner.detail}</p></div><div class="archetype-result-card__body"><p>이번 주말에는 이 시간을 작게라도 일정에 넣어 보세요. 가까운 장소와 부담 없는 시간부터 정하면 바로 시작할 수 있어요.</p></div></article><div class="result-actions"><button class="button button-small" type="button" data-restart>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>결과 공유 문구 복사</button></div>`;
       result.querySelector(".archetype-result-card__image").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
       result.querySelector("[data-restart]").addEventListener("click", reset);
-      result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText("내가 주말에 하고 싶은 건 [" + winner.name + "] !!", "https://moa-dej.pages.dev/worldcup.html"), status));
+      result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText(tr("내가 주말에 하고 싶은 건 [") + tr(winner.name) + tr("] !!"), "https://moa-dej.pages.dev/worldcup.html"), status));
     };
     function reset() {
       round = activities;
@@ -295,7 +296,7 @@
       const result = document.querySelector("#animal-result");
       result.innerHTML = `<article class="archetype-result-card"><div class="archetype-result-card__top"><span class="archetype-result-card__brand">MOA PLAY · 동물상 테스트</span><img class="archetype-result-card__image" src="${profiles[winner].image}" alt="${profiles[winner].name} 결과 이미지" loading="lazy"><p class="archetype-result-card__label">나의 동물 캐릭터</p><h3 tabindex="-1">${profiles[winner].emoji} ${profiles[winner].name}</h3><p class="archetype-result-card__catchphrase">${profiles[winner].text}</p></div><div class="archetype-result-card__body"><div class="info-grid"><article class="info-card"><h3>연애 모드 💌</h3><p>${profiles[winner].love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profiles[winner].work}</p></article></div></div></article><div class="result-actions"><button class="button button-small" type="button" data-retry>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>결과 공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite"></p>`;
       result.querySelector(".archetype-result-card__image").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
-      result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText("이번 테스트 결과는 [" + profiles[winner].name + "] !!", "https://moa-dej.pages.dev/animal-test.html"), result.querySelector(".share-status")));
+      result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText(tr("이번 테스트 결과는 [") + tr(profiles[winner].name) + tr("] !!"), "https://moa-dej.pages.dev/animal-test.html"), result.querySelector(".share-status")));
       result.hidden = false;
       animalForm.hidden = true;
       document.querySelector("#animal-error").textContent = "";
@@ -358,7 +359,7 @@
       const profile = typeProfiles[summary];
       result.innerHTML = `<article class="archetype-result-card"><div class="archetype-result-card__top"><span class="archetype-result-card__brand">MOA PLAY · MBTI</span><img class="archetype-result-card__image" src="${profile.image}" alt="MBTI ${summary} 결과 이미지" loading="lazy"><p class="archetype-result-card__label">당신의 MBTI</p><h3 tabindex="-1">${summary} · ${profile.title}</h3><p class="archetype-result-card__catchphrase">${profile.intro}</p></div><div class="archetype-result-card__body"><div class="info-grid"><article class="info-card"><h3>평소의 당신 ☀️</h3><p>${profile.daily}</p></article><article class="info-card"><h3>연애 모드 💌</h3><p>${profile.love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profile.work}</p></article></div></div></article><div class="result-actions"><button class="button button-small" type="button" data-retry>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>결과 공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite"></p>`;
       result.querySelector(".archetype-result-card__image").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
-      result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText("나의 MBTI는 [" + summary + "] !!", "https://moa-dej.pages.dev/mbti.html"), result.querySelector(".share-status")));
+      result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText(tr("나의 MBTI는 [") + summary + tr("] !!"), "https://moa-dej.pages.dev/mbti.html"), result.querySelector(".share-status")));
       result.hidden = false;
       mbtiForm.hidden = true;
       document.querySelector("#mbti-error").textContent = "";

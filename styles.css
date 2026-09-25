@@ -258,3 +258,6 @@
       .archetype-stage { min-height: 0; }
       .archetype-result-card__image { height: 220px; margin-block: 18px 14px; }
     }
+
+.language-select { min-height: 40px; padding: 7px 28px 7px 10px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); font: inherit; font-size: .9rem; cursor: pointer; }
+@media (max-width: 600px) { .nav { gap: 10px; } .language-select { max-width: 112px; padding-inline: 7px 20px; font-size: .78rem; } }
