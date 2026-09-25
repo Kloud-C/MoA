@@ -35,6 +35,16 @@
     };
   };
 
+  const formatShareText = (resultLine, url) => `${resultLine}\n---------------------------------------------------\n나도 테스트 해보고 싶다면?\n${url}`;
+  const copyShareText = async (text, status) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      status.textContent = "공유 문구를 복사했어요.";
+    } catch {
+      status.textContent = "복사할 수 없어요. 결과 문구를 직접 공유해 주세요.";
+    }
+  };
+
   const worldcup = document.querySelector("#worldcup-game");
   if (worldcup) {
     const activities = [
@@ -98,19 +108,10 @@
       label.textContent = "오늘의 선택";
       count.textContent = "7 / 7 완료";
       result.hidden = false;
-      result.innerHTML = `<span class="eyebrow-text">당신이 고른 주말</span><div class="result-hero"><img class="result-photo" src="${winner.image}" alt="${winner.name}" loading="lazy"><div><h3>${winner.name}</h3><p>${winner.detail}</p></div></div><p>이번 주말에는 이 시간을 작게라도 일정에 넣어 보세요. 가까운 장소와 부담 없는 시간부터 정하면 바로 시작할 수 있어요.</p><div class="result-actions"><button class="button button-small" type="button" data-restart>다시 하기</button><button class="button button-small button-quiet" type="button" data-share>결과 복사</button></div>`;
+      result.innerHTML = `<span class="eyebrow-text">당신이 고른 주말</span><div class="result-hero"><img class="result-photo" src="${winner.image}" alt="${winner.name}" loading="lazy"><div><h3>${winner.name}</h3><p>${winner.detail}</p></div></div><p>이번 주말에는 이 시간을 작게라도 일정에 넣어 보세요. 가까운 장소와 부담 없는 시간부터 정하면 바로 시작할 수 있어요.</p><div class="result-actions"><button class="button button-small" type="button" data-restart>다시 하기</button><button class="button button-small button-quiet" type="button" data-share>공유 문구 복사</button></div>`;
       result.querySelector(".result-photo").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
       result.querySelector("[data-restart]").addEventListener("click", reset);
-      result.querySelector("[data-share]").addEventListener("click", async (event) => {
-        const button = event.currentTarget;
-        try {
-          await navigator.clipboard.writeText(`모아 주말 취향 월드컵 결과: ${winner.name} — https://moa-dej.pages.dev/worldcup.html`);
-          status.textContent = "결과 문구를 복사했어요.";
-        } catch {
-          status.textContent = "이 브라우저에서는 복사를 사용할 수 없어요. 결과를 직접 공유해 주세요.";
-        }
-        button.blur();
-      });
+      result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText("내가 주말에 하고 싶은 건 [" + winner.name + "] !!", "https://moa-dej.pages.dev/worldcup.html"), status));
     };
     function reset() {
       round = activities;
@@ -156,8 +157,9 @@
       const winners = Object.keys(scores).filter((key) => scores[key] === highest);
       const winner = winners[Math.floor(Math.random() * winners.length)];
       const result = document.querySelector("#animal-result");
-      result.innerHTML = `<span class="eyebrow-text">당신과 닮은 동물</span><div class="result-hero"><img class="result-photo" src="${profiles[winner].image}" alt="${profiles[winner].name} 사진" loading="lazy"><div><h3>${profiles[winner].emoji} ${profiles[winner].name}</h3><p>${profiles[winner].text}</p></div></div><div class="info-grid"><article class="info-card"><h3>연애 모드 💌</h3><p>${profiles[winner].love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profiles[winner].work}</p></article></div><p>재미로 보는 캐릭터 결과예요. 사람마다 다양한 면이 있다는 점도 기억해 주세요.</p><button class="button button-small button-quiet" type="button" data-retry>다시 해보기</button>`;
+      result.innerHTML = `<span class="eyebrow-text">당신과 닮은 동물</span><div class="result-hero"><img class="result-photo" src="${profiles[winner].image}" alt="${profiles[winner].name} 사진" loading="lazy"><div><h3>${profiles[winner].emoji} ${profiles[winner].name}</h3><p>${profiles[winner].text}</p></div></div><div class="info-grid"><article class="info-card"><h3>연애 모드 💌</h3><p>${profiles[winner].love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profiles[winner].work}</p></article></div><p>재미로 보는 캐릭터 결과예요. 사람마다 다양한 면이 있다는 점도 기억해 주세요.</p><div class="result-actions"><button class="button button-small button-quiet" type="button" data-retry>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite"></p>`;
       result.querySelector(".result-photo").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
+      result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText("나와 닮은 동물은 [" + profiles[winner].name + "] !!", "https://moa-dej.pages.dev/animal-test.html"), result.querySelector(".share-status")));
       result.hidden = false;
       document.querySelector("#animal-error").textContent = "";
       result.querySelector("[data-retry]").addEventListener("click", () => {
@@ -214,8 +216,9 @@
       }).join("");
       const result = document.querySelector("#mbti-result");
       const profile = typeProfiles[summary];
-      result.innerHTML = `<span class="eyebrow-text">당신의 결과</span><div class="result-hero"><img class="result-photo" src="${profile.image}" alt="${summary} 결과 이미지" loading="lazy"><div><span class="result-type">${summary}</span><h3>${profile.title}</h3><p>${profile.intro}</p></div></div><div class="info-grid"><article class="info-card"><h3>평소의 당신 ☀️</h3><p>${profile.daily}</p></article><article class="info-card"><h3>연애 모드 💌</h3><p>${profile.love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profile.work}</p></article></div><p>재미로 보는 모아의 자체 성향 놀이 결과예요. 같은 유형이어도 사람마다 다르게 표현될 수 있어요.</p><button class="button button-small button-quiet" type="button" data-retry>다시 해보기</button>`;
+      result.innerHTML = `<span class="eyebrow-text">당신의 결과</span><div class="result-hero"><img class="result-photo" src="${profile.image}" alt="${summary} 결과 이미지" loading="lazy"><div><span class="result-type">${summary}</span><h3>${profile.title}</h3><p>${profile.intro}</p></div></div><div class="info-grid"><article class="info-card"><h3>평소의 당신 ☀️</h3><p>${profile.daily}</p></article><article class="info-card"><h3>연애 모드 💌</h3><p>${profile.love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profile.work}</p></article></div><p>재미로 보는 모아의 자체 성향 놀이 결과예요. 같은 유형이어도 사람마다 다르게 표현될 수 있어요.</p><div class="result-actions"><button class="button button-small button-quiet" type="button" data-retry>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite"></p>`;
       result.querySelector(".result-photo").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
+      result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText("나의 MBTI는 [" + summary + "] !!", "https://moa-dej.pages.dev/mbti.html"), result.querySelector(".share-status")));
       result.hidden = false;
       document.querySelector("#mbti-error").textContent = "";
       result.querySelector("[data-retry]").addEventListener("click", () => {
