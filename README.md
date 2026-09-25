@@ -6,29 +6,27 @@
 
 `index.html`을 브라우저에서 열면 됩니다. 현재 빌드 도구나 서버 코드는 필요하지 않습니다.
 
-## GitHub와 Cloudflare Pages 자동 배포
+## GitHub 저장소
 
-Cloudflare Pages의 Git 연동을 사용하면 GitHub 저장소에 변경 사항을 푸시할 때 사이트 배포를 자동으로 실행할 수 있습니다.
+이 프로젝트는 `https://github.com/Kloud-C/MoA` 저장소의 `main` 브랜치에 연결되어 있습니다. 변경 사항을 기록하고 GitHub에 올리려면 프로젝트 폴더에서 다음 명령을 실행하세요.
 
-1. Git을 설치하고 이 폴더에서 저장소를 초기화합니다.
-   ```sh
-   git init
-   git add index.html README.md .gitignore
-   git commit -m "Create initial site scaffold"
-   git branch -M main
-   ```
-2. GitHub에서 새 저장소를 만들고, 안내되는 원격 저장소 주소를 연결한 뒤 첫 커밋을 올립니다.
-   ```sh
-   git remote add origin https://github.com/OWNER/REPOSITORY.git
-   git push -u origin main
-   ```
-3. Cloudflare 대시보드에서 **Workers & Pages → Create application → Pages → Connect to Git**을 선택하고 GitHub 계정을 연결합니다.
-4. 방금 만든 저장소를 선택합니다. 이 사이트는 빌드 단계가 없는 정적 사이트이므로 설정은 다음과 같습니다.
+```sh
+git add .
+git commit -m "Describe your change"
+git push
+```
+
+## Cloudflare Pages 자동 배포
+
+Cloudflare Pages의 Git 연동을 한 번 설정하면 `main`에 변경 사항을 푸시할 때 운영 사이트를 자동으로 배포할 수 있습니다. Cloudflare 대시보드에서 **Workers & Pages → Create application → Pages → Connect to Git**을 선택하고 GitHub를 연결한 뒤 `Kloud-C/MoA` 저장소를 고르세요. GitHub 인증과 저장소 접근 권한 허용은 계정 소유자가 직접 진행해야 합니다.
+
+이 사이트는 빌드 단계가 없는 정적 사이트이므로 설정은 다음과 같습니다.
    - Production branch: `main`
    - Framework preset: `None`
    - Build command: 비워 둠
    - Build output directory: `.` (저장소 루트)
-5. 저장하면 Cloudflare가 첫 배포를 진행합니다. 이후 `main`에 푸시할 때마다 운영 사이트를 자동으로 갱신하고, 다른 브랜치와 Pull Request에는 미리보기 배포를 만들 수 있습니다.
+
+저장하면 Cloudflare가 첫 배포를 진행합니다. 이후 `main`에 푸시할 때마다 운영 사이트를 자동으로 갱신하고, 다른 브랜치와 Pull Request에는 미리보기 배포를 만들 수 있습니다.
 
 ## 콘텐츠 확장
 
