@@ -151,15 +151,17 @@
           document.querySelector("#animal-error").textContent = "결과를 보려면 열 문항에 모두 답해 주세요.";
           return;
         }
-        scores[answer] += 1;
+        answer.split(",").forEach((key) => {
+          if (Object.prototype.hasOwnProperty.call(scores, key)) scores[key] += 1;
+        });
       }
       const highest = Math.max(...Object.values(scores));
       const winners = Object.keys(scores).filter((key) => scores[key] === highest);
       const winner = winners[Math.floor(Math.random() * winners.length)];
       const result = document.querySelector("#animal-result");
-      result.innerHTML = `<span class="eyebrow-text">당신과 닮은 동물</span><div class="result-hero"><img class="result-photo" src="${profiles[winner].image}" alt="${profiles[winner].name} 사진" loading="lazy"><div><h3>${profiles[winner].emoji} ${profiles[winner].name}</h3><p>${profiles[winner].text}</p></div></div><div class="info-grid"><article class="info-card"><h3>연애 모드 💌</h3><p>${profiles[winner].love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profiles[winner].work}</p></article></div><p>재미로 보는 캐릭터 결과예요. 사람마다 다양한 면이 있다는 점도 기억해 주세요.</p><div class="result-actions"><button class="button button-small button-quiet" type="button" data-retry>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite"></p>`;
+      result.innerHTML = `<span class="eyebrow-text">당신의 동물 캐릭터</span><div class="result-hero"><img class="result-photo" src="${profiles[winner].image}" alt="${profiles[winner].name} 사진" loading="lazy"><div><h3>${profiles[winner].emoji} ${profiles[winner].name}</h3><p>${profiles[winner].text}</p></div></div><div class="info-grid"><article class="info-card"><h3>연애 모드 💌</h3><p>${profiles[winner].love}</p></article><article class="info-card"><h3>일할 때 🧩</h3><p>${profiles[winner].work}</p></article></div><p>재미로 보는 캐릭터 결과예요.</p><div class="result-actions"><button class="button button-small button-quiet" type="button" data-retry>다시 해보기</button><button class="button button-small button-quiet" type="button" data-share>공유 문구 복사</button></div><p class="share-status" role="status" aria-live="polite"></p>`;
       result.querySelector(".result-photo").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
-      result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText("나와 닮은 동물은 [" + profiles[winner].name + "] !!", "https://moa-dej.pages.dev/animal-test.html"), result.querySelector(".share-status")));
+      result.querySelector("[data-share]").addEventListener("click", () => copyShareText(formatShareText("이번 테스트 결과는 [" + profiles[winner].name + "] !!", "https://moa-dej.pages.dev/animal-test.html"), result.querySelector(".share-status")));
       result.hidden = false;
       document.querySelector("#animal-error").textContent = "";
       result.querySelector("[data-retry]").addEventListener("click", () => {
