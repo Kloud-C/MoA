@@ -38,14 +38,14 @@
   const worldcup = document.querySelector("#worldcup-game");
   if (worldcup) {
     const activities = [
-      { name: "집에서 좋아하는 영화 보기", detail: "간식과 함께 익숙한 영화나 새 작품을 천천히 감상해요." },
-      { name: "동네의 새로운 맛집 가기", detail: "한 번도 먹어 보지 않은 메뉴를 골라 동네를 탐험해요." },
-      { name: "공원이나 숲길 산책하기", detail: "가까운 초록 길을 걸으며 머리를 환기해요." },
-      { name: "취미 하나에 깊이 몰입하기", detail: "책, 그림, 만들기처럼 좋아하는 일에 시간을 써요." },
-      { name: "친구와 카페에서 이야기하기", detail: "근황을 나누고 서로의 이야기를 들어요." },
-      { name: "가까운 곳으로 드라이브하기", detail: "목적지를 정하거나 풍경을 따라 잠깐 다녀와요." },
-      { name: "집에서 천천히 요리하기", detail: "간단한 재료로 먹고 싶은 음식을 직접 만들어요." },
-      { name: "가벼운 운동이나 스트레칭하기", detail: "산책, 요가, 홈트 중 기분에 맞는 움직임을 해요." }
+      { name: "집에서 좋아하는 영화 보기", detail: "간식과 함께 익숙한 영화나 새 작품을 천천히 감상해요.", image: "image/my week/Watch a movie at home.jpg" },
+      { name: "동네의 새로운 맛집 가기", detail: "한 번도 먹어 보지 않은 메뉴를 골라 동네를 탐험해요.", image: "image/my week/Try a new local restaurant.jpg" },
+      { name: "공원이나 숲길 산책하기", detail: "가까운 초록 길을 걸으며 머리를 환기해요.", image: "image/my week/Walk in a park or forest.jpg" },
+      { name: "취미 하나에 깊이 몰입하기", detail: "책, 그림, 만들기처럼 좋아하는 일에 시간을 써요.", image: "image/my week/Enjoy a favorite hobby.jpg" },
+      { name: "친구와 카페에서 이야기하기", detail: "근황을 나누고 서로의 이야기를 들어요.", image: "image/my week/Chat with a friend at a cafe.jpg" },
+      { name: "가까운 곳으로 드라이브하기", detail: "목적지를 정하거나 풍경을 따라 잠깐 다녀와요.", image: "image/my week/Take a nearby drive.jpg" },
+      { name: "집에서 천천히 요리하기", detail: "간단한 재료로 먹고 싶은 음식을 직접 만들어요.", image: "image/my week/Cook at home.jpg" },
+      { name: "가벼운 운동이나 스트레칭하기", detail: "산책, 요가, 홈트 중 기분에 맞는 움직임을 해요.", image: "image/my week/Do light exercise or stretching.jpg" }
     ];
     const options = document.querySelector("#match-options");
     const label = document.querySelector("#round-label");
@@ -98,7 +98,8 @@
       label.textContent = "오늘의 선택";
       count.textContent = "7 / 7 완료";
       result.hidden = false;
-      result.innerHTML = `<span class="eyebrow-text">당신이 고른 주말</span><h3>${winner.name}</h3><p>${winner.detail}</p><p>이번 주말에는 이 시간을 작게라도 일정에 넣어 보세요. 가까운 장소와 부담 없는 시간부터 정하면 바로 시작할 수 있어요.</p><div class="result-actions"><button class="button button-small" type="button" data-restart>다시 하기</button><button class="button button-small button-quiet" type="button" data-share>결과 복사</button></div>`;
+      result.innerHTML = `<span class="eyebrow-text">당신이 고른 주말</span><div class="result-hero"><img class="result-photo" src="${winner.image}" alt="${winner.name}" loading="lazy"><div><h3>${winner.name}</h3><p>${winner.detail}</p></div></div><p>이번 주말에는 이 시간을 작게라도 일정에 넣어 보세요. 가까운 장소와 부담 없는 시간부터 정하면 바로 시작할 수 있어요.</p><div class="result-actions"><button class="button button-small" type="button" data-restart>다시 하기</button><button class="button button-small button-quiet" type="button" data-share>결과 복사</button></div>`;
+      result.querySelector(".result-photo").addEventListener("error", (event) => { event.currentTarget.hidden = true; });
       result.querySelector("[data-restart]").addEventListener("click", reset);
       result.querySelector("[data-share]").addEventListener("click", async (event) => {
         const button = event.currentTarget;
