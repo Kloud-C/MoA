@@ -347,3 +347,38 @@ progress::-moz-progress-bar { border-radius: 999px; background: var(--mint-600);
   .content-panel { padding: 16px; }
   .share-dialog__content { padding-inline: 16px; }
 }
+
+/* Give handheld screens more breathing room and a calmer type scale. */
+@media (max-width: 760px) {
+  .wrap { width: min(calc(100% - 48px), 680px); }
+}
+
+@media (max-width: 600px) {
+  .wrap { width: min(calc(100% - 48px), 560px); }
+  .page-main { padding-top: 16px; padding-bottom: 40px; }
+  .breadcrumbs { margin-bottom: 14px; font-size: .84rem; }
+  .article-header { margin-bottom: 15px; padding: 19px 17px; border-radius: 16px; }
+  .article-header h1 { margin: 7px 0 9px; font-size: clamp(1.35rem, 6.1vw, 1.75rem); line-height: 1.3; letter-spacing: -.04em; }
+  .article-header .eyebrow-text { font-size: .7rem; letter-spacing: .055em; }
+  .article-header p, .article p, .article li { font-size: .92rem; line-height: 1.72; }
+  .content-panel { margin: 13px 0; padding: 16px; border-radius: 16px; }
+  .content-panel h2 { margin-top: 0; font-size: clamp(1.08rem, 4.8vw, 1.35rem); line-height: 1.38; }
+  .content-panel > p { margin-block: 10px 15px; font-size: .91rem; line-height: 1.68; }
+  .progress-row { gap: 8px; font-size: .82rem; }
+  .choice-grid { gap: 9px; }
+  .choice-button { min-height: 72px; padding: 12px 14px; border-radius: 13px; font-size: .92rem; line-height: 1.45; }
+  .choice-button span { margin-top: 4px; font-size: .83rem; line-height: 1.5; }
+  .result { padding: 14px; border-radius: 14px; }
+  .result-photo { border-radius: 14px; }
+  .result-actions { gap: 8px; }
+  .result-actions .button { min-height: 44px; padding-inline: 14px; font-size: .9rem; }
+  .site-note { margin-top: 24px; padding-top: 16px; font-size: .78rem; line-height: 1.65; }
+}
+
+@media (max-width: 360px) {
+  .wrap { width: calc(100% - 40px); }
+  .article-header, .content-panel { padding-inline: 14px; }
+  .article-header h1 { font-size: 1.32rem; }
+  .content-panel h2 { font-size: 1.05rem; }
+  .choice-button { padding-inline: 12px; font-size: .88rem; }
+}
