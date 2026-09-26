@@ -1,7 +1,12 @@
 export const WORLD_CUPS = {
   weekend: {
-    brackets: [8],
-    items: ["movie-night", "new-restaurant", "forest-walk", "favorite-hobby", "cafe-chat", "short-drive", "cook-at-home", "light-exercise"]
+    brackets: [16, 32],
+    items: [
+      "movie-night", "new-restaurant", "forest-walk", "favorite-hobby", "cafe-chat", "short-drive", "cook-at-home", "light-exercise",
+      "bookstore", "flea-market", "balcony-gardening", "home-baking", "riverside-sketch", "art-gallery", "pottery-class", "board-games",
+      "riverside-cycling", "botanical-garden", "beach-walk", "park-picnic", "traditional-market", "baseball-game", "museum-visit", "record-store",
+      "photo-walk", "weekend-brunch", "library-reading", "dance-class", "craft-workshop", "park-jog", "spa-relax", "nearby-train-trip"
+    ]
   },
   "late-night-food": {
     brackets: [16, 32],
