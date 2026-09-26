@@ -48,6 +48,13 @@ The template defines hierarchy and behavior, not identical wording or identical 
 - Keep a consistent photographic quality within one result family, while varying people, setting, framing, and lighting so the set does not look like one repeated scene.
 - Document each new image folder and its filename-to-result mapping in `image/README.md`.
 
+### Teto/Egen result imagery
+
+- All eight result images must look like believable photographs and show a person in a scene that matches the result title and description.
+- Make the four Teto results visually decisive: assertive leadership, practical protection, composed independence, and direct expression. Make the four Egen results visibly warm: thoughtful care, attentive empathy, carefree independence, and lively social energy.
+- Distinguish results through the subject's expression, posture, action, lighting, and setting. Avoid reusing one generic smiling portrait for several types.
+- Keep generated images free of text and logos, use the profile ID as the image filename, and verify the image URL cache token when replacing a file at an existing URL.
+
 ## Page structure
 
 - Use the shared header, centered `.wrap`, `.page-main`, `.article`, breadcrumb, `.article-header`, content panels, and footer used by the localized pages.
