@@ -27,6 +27,39 @@
     image: image("weekend-activities", id, "jpg")
   }));
 
+  const additionalWeekendNames = [
+    ["bookstore", "동네 서점 둘러보기", "Browse a neighborhood bookstore", "街の本屋をのぞく", "逛逛附近的书店", "마음에 드는 책을 천천히 살펴보며 취향을 발견해요.", "Take your time browsing books and discover something new.", "気になる本をゆっくり眺めながら、新しい好みを見つけます。", "慢慢翻看喜欢的书，也许会发现新的兴趣。"],
+    ["flea-market", "주말 플리마켓 구경하기", "Browse a weekend flea market", "週末のフリーマーケットを巡る", "逛周末跳蚤市场", "구경하다 보면 예상치 못한 물건을 만날지도 몰라요.", "See what unexpected finds turn up as you wander.", "歩いていると、思いがけない掘り出し物に出会えるかもしれません。", "边逛边看看，说不定会遇到意外的小惊喜。"],
+    ["balcony-gardening", "베란다 식물 돌보기", "Care for balcony plants", "ベランダの植物を手入れする", "照料阳台上的植物", "식물에 물을 주고 잎을 정리하며 조용히 쉬어요.", "Water your plants and enjoy a quiet moment at home.", "植物に水をあげて葉を整えながら、静かな時間を過ごします。", "给植物浇浇水、整理叶片，在家享受片刻宁静。"],
+    ["home-baking", "집에서 쿠키 굽기", "Bake cookies at home", "家でクッキーを焼く", "在家烤饼干", "고소한 냄새가 집 안에 퍼지는 시간을 즐겨요.", "Enjoy the warm smell of cookies baking in the oven.", "焼きたての甘い香りが広がる時間を楽しみます。", "享受饼干出炉时香气弥漫的时光。"],
+    ["riverside-sketch", "강가에서 그림 그리기", "Sketch by the river", "川辺でスケッチする", "在河边画画", "천천히 풍경을 바라보며 손 가는 대로 그려봐요.", "Take in the view and draw whatever catches your eye.", "景色を眺めながら、心の向くままに描いてみます。", "静静欣赏风景，把眼前所见画下来。"],
+    ["art-gallery", "작은 갤러리 전시 보기", "Visit a small art gallery", "小さなギャラリーを訪れる", "参观小型画廊", "마음에 남는 작품 앞에서 잠깐 발걸음을 멈춰요.", "Pause in front of the artwork that stays with you.", "心に残る作品の前で、少し足を止めてみます。", "在让自己驻足的作品前，多看一会儿。"],
+    ["pottery-class", "도자기 만들기 체험하기", "Try a pottery class", "陶芸を体験する", "体验陶艺制作", "흙을 만지며 생각을 비우고 나만의 그릇을 만들어요.", "Work with clay, clear your mind, and make something of your own.", "土に触れて気持ちを整えながら、自分だけの器を作ります。", "揉揉陶土，放松心情，做一件属于自己的作品。"],
+    ["board-games", "친구들과 보드게임 하기", "Play board games with friends", "友達とボードゲームをする", "和朋友玩桌游", "간식과 게임을 곁들여 웃고 떠들어요.", "Share snacks, friendly competition, and plenty of laughs.", "おやつを囲んでゲームをしながら、みんなで笑います。", "和朋友边吃零食边玩游戏，享受热闹时光。"],
+    ["riverside-cycling", "강변 자전거 타기", "Ride along the riverside", "川沿いを自転車で走る", "沿着河边骑行", "바람을 맞으며 익숙한 길도 새롭게 둘러봐요.", "Feel the breeze and see a familiar path in a new way.", "風を感じながら、いつもの道を新鮮な気分で走ります。", "迎着微风骑行，用新的视角看看熟悉的路线。"],
+    ["botanical-garden", "식물원 천천히 둘러보기", "Wander through a botanical garden", "植物園をゆっくり巡る", "慢慢逛逛植物园", "초록 사이를 걸으며 계절마다 다른 풍경을 만나요.", "Walk among the greenery and notice the changing seasons.", "緑の中を歩きながら、季節ごとの景色に出会います。", "漫步在绿意之间，感受不同季节的景致。"],
+    ["beach-walk", "바닷가를 따라 걷기", "Walk along the beach", "海辺を歩く", "沿着海边散步", "파도 소리를 들으며 복잡한 마음을 잠시 내려놔요.", "Listen to the waves and let your thoughts settle.", "波の音を聞きながら、考えごとを少し休ませます。", "听着海浪声，让纷乱的思绪暂时歇一歇。"],
+    ["park-picnic", "공원에서 피크닉 하기", "Have a picnic in the park", "公園でピクニックをする", "在公园野餐", "간단한 먹거리를 챙겨 나무 그늘에서 여유를 즐겨요.", "Bring a simple bite and relax under the trees.", "軽食を持って出かけ、木陰でのんびり過ごします。", "带上简单的食物，在树荫下悠闲地待一会儿。"],
+    ["traditional-market", "전통시장 구경하기", "Explore a traditional market", "伝統市場を歩く", "逛逛传统市场", "시장 골목을 걸으며 눈에 띄는 간식과 물건을 찾아요.", "Stroll the market lanes and see what catches your eye.", "市場の路地を歩きながら、気になる食べ物や品物を探します。", "逛逛市场小巷，寻找吸引自己的小吃和物品。"],
+    ["baseball-game", "야구 경기 직관하기", "Watch a baseball game", "野球を観戦する", "现场看一场棒球赛", "응원하는 팀과 함께 경기의 열기를 느껴봐요.", "Feel the energy of the game and cheer for your team.", "応援するチームと一緒に、試合の熱気を楽しみます。", "和支持的球队一起感受现场比赛的热情。"],
+    ["museum-visit", "박물관 전시 둘러보기", "Explore a museum exhibition", "博物館の展示を巡る", "逛逛博物馆展览", "관심 가는 전시를 따라 천천히 새로운 이야기를 만나요.", "Follow an exhibit that interests you and discover its story.", "気になる展示をたどりながら、新しい物語に出会います。", "跟着感兴趣的展览慢慢走，发现新的故事。"],
+    ["record-store", "레코드 가게에서 음악 찾기", "Browse music at a record shop", "レコード店で音楽を探す", "在唱片店寻找音乐", "앨범을 넘겨보다가 오늘의 플레이리스트를 발견해요.", "Flip through albums and find a new soundtrack for the day.", "アルバムを眺めながら、今日聴きたい音楽を見つけます。", "翻翻唱片，找到今天想听的音乐。"],
+    ["photo-walk", "동네 골목 사진 찍기", "Take photos around the neighborhood", "街角の写真を撮りながら歩く", "在街区散步拍照", "평소 지나치던 골목에서 작은 장면을 찾아봐요.", "Look for small details on streets you usually pass by.", "いつも通る道で、ふと目に留まる景色を探します。", "在平时经过的街巷里，发现容易错过的小景色。"],
+    ["weekend-brunch", "테라스에서 브런치 먹기", "Enjoy brunch on a patio", "テラスでブランチを楽しむ", "在露台享用早午餐", "햇살 좋은 자리에서 느긋하게 한 끼를 즐겨요.", "Take your time over a meal in a sunny spot.", "日当たりのいい席で、ゆっくり食事を楽しみます。", "找个阳光好的位置，慢慢享用一顿饭。"],
+    ["library-reading", "도서관에서 책 읽기", "Read at the library", "図書館で本を読む", "在图书馆读书", "조용한 자리에서 책장을 넘기며 나만의 시간을 보내요.", "Settle into a quiet spot and spend time with a book.", "静かな席でページをめくり、自分だけの時間を過ごします。", "找个安静的位置，享受沉浸阅读的时光。"],
+    ["dance-class", "가벼운 댄스 클래스 듣기", "Try a beginner dance class", "気軽なダンスレッスンに参加する", "体验轻松的舞蹈课", "음악에 맞춰 몸을 움직이며 기분을 환기해요.", "Move to the music and give yourself a refreshing reset.", "音楽に合わせて体を動かし、気分をリフレッシュします。", "跟着音乐活动身体，让心情焕然一新。"],
+    ["craft-workshop", "공방에서 작은 소품 만들기", "Make something at a local workshop", "工房で小物を作る", "在手作工坊制作小物件", "손으로 하나씩 만들어 완성하는 즐거움을 느껴요.", "Enjoy making something by hand, one step at a time.", "手を動かしながら、少しずつ形にする楽しさを味わいます。", "亲手一步步制作，享受作品慢慢成形的乐趣。"],
+    ["park-jog", "공원에서 천천히 달리기", "Go for an easy jog in the park", "公園でゆっくり走る", "在公园慢跑", "무리하지 않는 속도로 달리며 몸과 마음을 깨워요.", "Move at an easy pace and wake up your body and mind.", "無理のないペースで走り、心と体をすっきりさせます。", "用轻松的节奏跑一跑，唤醒身心活力。"],
+    ["spa-relax", "따뜻한 스파에서 쉬기", "Relax in a warm spa lounge", "スパでゆっくりくつろぐ", "在温暖的休息空间放松", "따뜻하고 조용한 공간에서 긴장을 풀고 쉬어요.", "Unwind in a warm, quiet space and take a real break.", "温かく静かな空間で、緊張をほどいてひと休みします。", "在温暖安静的空间里放松下来，好好休息。"],
+    ["nearby-train-trip", "기차 타고 근교 다녀오기", "Take a train to a nearby town", "電車で近くの街へ出かける", "坐火车去附近的小镇", "가까운 곳으로 잠시 떠나 낯선 거리를 걸어봐요.", "Take a short trip and wander somewhere a little unfamiliar.", "近くの街へ出かけて、いつもと違う道を歩いてみます。", "短途出行，去稍显陌生的街道走走看看。"]
+  ].map(([id, ko, en, ja, zh, detailKo, detailEn, detailJa, detailZh]) => ({
+    id,
+    name: locale(ko, en, ja, zh),
+    detail: locale(detailKo, detailEn, detailJa, detailZh),
+    image: image("weekend-activities", id, "jpg")
+  }));
+  weekendNames.push(...additionalWeekendNames);
+
   const foodNames = [
     ["tteokbokki", "떡볶이", "Tteokbokki", "トッポッキ", "辣炒年糕"],
     ["fried-chicken", "배달 치킨", "Korean fried chicken", "韓国フライドチキン", "韩式炸鸡"],
@@ -141,7 +174,7 @@
   window.MOLGGA_WORLDCUPS = {
     weekend: {
       id: "weekend", page: "worldcup.html", title: locale("주말 취향 월드컵", "Weekend Preference World Cup", "週末の好みワールドカップ", "周末偏好世界杯"),
-      availableBrackets: [8], items: weekendNames
+      availableBrackets: [16, 32], items: weekendNames
     },
     "late-night-food": {
       id: "late-night-food", page: "late-night-worldcup.html", title: locale("야식 이상형 월드컵", "Late-Night Food World Cup", "夜食ワールドカップ", "深夜美食世界杯"),
