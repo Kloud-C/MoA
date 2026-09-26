@@ -1,8 +1,8 @@
 window.MOA_ARCHETYPE_TESTS = {
   "teto-egen": {
     title: "테토/에겐 테스트",
-    eyebrow: "MOA PLAY · 12문항 · 약 3분",
-    url: "https://moa-dej.pages.dev/teto-egen-test.html",
+    eyebrow: "molgga PLAY · 12문항 · 약 3분",
+    url: "https://molgga.com/teto-egen-test.html",
     questions: [
       { prompt: "약속 장소를 정할 때 나는…", choices: [
         { text: "가고 싶은 곳을 먼저 정해 시원하게 제안한다", scores: ["teto-leader", "teto-bold"] },

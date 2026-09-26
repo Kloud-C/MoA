@@ -1,8 +1,8 @@
 window.MOA_ARCHETYPE_TESTS = window.MOA_ARCHETYPE_TESTS || {};
 window.MOA_ARCHETYPE_TESTS["past-life"] = {
   title: "전생 테스트",
-  eyebrow: "MOA PLAY · 30문항 · 약 5분",
-  url: "https://moa-dej.pages.dev/past-life-test.html",
+  eyebrow: "molgga PLAY · 30문항 · 약 5분",
+  url: "https://molgga.com/past-life-test.html",
   questions: [
     { prompt: "낯선 마을에 도착한 첫날, 제일 먼저 할 일은?", choices: [
       { text: "사람들이 모인 장터부터 구경한다", scores: ["market", "crow"] },

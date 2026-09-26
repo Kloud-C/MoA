@@ -38,6 +38,7 @@
     }
     .header-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.25rem; font-weight: 850; letter-spacing: -.05em; }
+    .brand-logo { display: block; width: 166px; height: auto; }
     .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 12px; background: var(--mint-600); color: white; }
     .brand-mark svg { display: block; width: 26px; height: 26px; overflow: visible; }
     .brand-mark path { fill: none; stroke: currentColor; stroke-width: 3.7; stroke-linecap: round; stroke-linejoin: round; }
@@ -130,6 +131,7 @@
     @media (max-width: 760px) {
       .wrap { width: min(100% - 32px, 560px); }
       .nav { gap: 14px; font-size: .82rem; }
+      .brand-logo { width: 136px; }
       .nav .button { display: inline-flex; min-height: 36px; padding-inline: 12px; font-size: .8rem; }
       .hero { padding: 52px 0 44px; }
       .category-grid { grid-template-columns: 1fr; }

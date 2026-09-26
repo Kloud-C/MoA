@@ -1,8 +1,8 @@
 window.MOA_ARCHETYPE_TESTS = window.MOA_ARCHETYPE_TESTS || {};
 window.MOA_ARCHETYPE_TESTS["attachment-style"] = {
   title: "애착 유형 테스트",
-  eyebrow: "MOA PLAY · 16문항 · 약 4분",
-  url: "https://moa-dej.pages.dev/attachment-test.html",
+  eyebrow: "molgga PLAY · 16문항 · 약 4분",
+  url: "https://molgga.com/attachment-test.html",
   questions: [
     { prompt: "가까운 사람이 평소보다 답장이 늦으면 나는…", choices: [
       { text: "상황이 있겠거니 하고 하던 일을 이어간다", scores: ["secure"] },
