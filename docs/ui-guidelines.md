@@ -80,7 +80,7 @@ The template defines hierarchy and behavior, not identical wording or identical 
 ## Localization and cache updates
 
 - Keep structure and component classes the same across `ko/`, `en/`, `ja/`, and `zh/` pages. Translate visible labels through the existing dictionaries when shared scripts provide translations.
-- When changing shared CSS, update the `styles.css?v=...` cache token in all HTML pages that load it. When changing a shared script whose URL is versioned, update its token in all relevant pages.
+- When changing shared CSS or JavaScript, add or increment its `?v=...` cache token in every HTML page that loads it, including currently unversioned references.
 - Compare corresponding language pages for matching sections, controls, and accessible labels before publishing.
 
 ## Review checklist for each page change
@@ -93,3 +93,13 @@ The template defines hierarchy and behavior, not identical wording or identical 
 6. Check cache tokens for changed CSS/JS and inspect `git diff --check` before commit.
 7. For quizzes, compare at least an early, middle, and final question: question number must match progress, and no prompt may claim to be final early.
 8. For result families, confirm every configured image path exists and that missing images still have the intended fallback.
+
+## Integration and behavior checklist
+
+- Before adding or changing a World Cup, update `assets/js/worldcup-data.js` and `functions/_shared/worldcup-config.js` together. Game IDs, unique item IDs, and bracket sizes must match exactly; every displayed item needs all four locale names/details and an existing image.
+- Keep the HTML game ID and bracket buttons in every locale aligned with the shared data. Only offer brackets supported by the unique item pool, and confirm a run finishes with exactly `bracket size - 1` choices and one winner.
+- For rankings, check the vote route, ranking route, `MOLGGA_DB` binding, and `migrations/0001_worldcup_votes.sql` together. The migration command must name the same D1 database documented for the Pages binding. Test accepted and rejected requests locally with a mock D1 binding; do not write test votes to production.
+- Keep anonymous vote payloads limited to the winner item, game, bracket size, and an opaque id. Never send individual choices or personal data. The Origin check is a browser request safeguard, not authentication or spam protection.
+- For archetype quizzes, verify every score ID and compatibility ID exists in that quiz's profiles, the stated question count matches the data, and every configured result image exists. Derive progress and final-question state from the data length rather than embedding a question number in copy.
+- Before publishing, run `node scripts/audit-integrations.mjs` from the repository root and `git diff --check`. It checks localized page/reference parity, sitemap and redirect targets, analytics tag consistency, World Cup data/API synchronization, quiz result references, image paths, API validation behavior, and D1 documentation consistency.
+- A local audit does not prove the production D1 write path. Check the deployed ranking read endpoint separately, and never submit synthetic production votes just to test it.

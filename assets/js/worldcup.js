@@ -133,9 +133,11 @@
       list.append(empty);
       return;
     }
-    items.forEach((entry, index) => {
-      const item = currentItems().find((candidate) => candidate.id === entry.itemId);
-      if (!item) return;
+    const visibleEntries = items
+      .map((entry) => ({ entry, item: currentItems().find((candidate) => candidate.id === entry.itemId) }))
+      .filter(({ item }) => item)
+      .slice(0, 10);
+    visibleEntries.forEach(({ entry, item }, index) => {
       const row = document.createElement("li");
       row.className = "worldcup-ranking__item";
       const rank = document.createElement("span");
@@ -189,7 +191,10 @@
     matchCount.textContent = `${totalMatches} / ${totalMatches} ${tr("완료")}`;
     progress.value = totalMatches;
     backButton.disabled = history.length === 0;
-    backButton.hidden = false;
+    // A completed result is already submitted to the shared ranking. Keep
+    // back navigation available during play, but do not let it revise a vote
+    // after the result has been counted.
+    backButton.hidden = true;
     result.hidden = false;
     result.replaceChildren();
 

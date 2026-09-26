@@ -38,10 +38,12 @@ Cloudflare Pages가 저장소 루트를 정적 사이트로 제공합니다. `ma
 전체 방문자의 우승 메뉴 랭킹은 Cloudflare D1 데이터베이스 `molgga-worldcup-rankings`를 사용합니다. Pages 프로젝트 `moa`의 **Production → Settings → Bindings**에 `MOLGGA_DB`라는 이름으로 연결했고, `migrations/0001_worldcup_votes.sql` 스키마를 적용했습니다. 이 바인딩은 Pages Functions가 데이터베이스에 접근하도록 하며 다음 배포부터 적용됩니다.
 
 ```powershell
-npx wrangler d1 execute molgga-worldcup --remote --file=migrations/0001_worldcup_votes.sql
+npx wrangler d1 execute molgga-worldcup-rankings --remote --file=migrations/0001_worldcup_votes.sql
 ```
 
 데이터베이스가 연결되기 전에는 랭킹이 현재 탭에서 완주한 결과만 보여줍니다. 연결 후에는 완주 시 최종 우승 항목·대진 규모·일회성 임의 ID만 저장하며 선택 과정은 전송하지 않습니다.
+
+연동 상태를 로컬에서 점검하려면 저장소 루트에서 `node scripts/audit-integrations.mjs`를 실행합니다. 페이지 경로, 언어별 페이지 구성, 월드컵 프런트엔드 데이터와 API 허용 목록, 문항의 결과 ID, 이미지 경로, API 요청 검증, 랭킹 바인딩 문서를 확인합니다.
 
 ## 카카오톡 공유 설정
 
