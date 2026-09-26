@@ -119,6 +119,9 @@
     }
     .category-card:hover { transform: translateY(-4px); border-color: var(--mint-200); }
     .card-icon { display: grid; width: 52px; height: 52px; place-items: center; border-radius: 17px; background: var(--mint-100); font-size: 1.55rem; }
+    .card-icon--image { overflow: hidden; padding: 0; }
+    .card-icon__image { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+    .result-detail-icon { display: inline-block; width: 1.35em; height: 1.35em; margin-right: .38em; object-fit: contain; vertical-align: -.28em; }
     .card-label { margin: 19px 0 5px; color: var(--mint-600); font-size: .77rem; font-weight: 800; letter-spacing: .07em; }
     .category-card h3 { margin: 0; font-size: 1.3rem; letter-spacing: -.04em; }
     .category-card p { margin: 8px 0 22px; color: var(--muted); font-size: .91rem; }
@@ -221,7 +224,8 @@
     .archetype-result-card__top { position: relative; overflow: hidden; padding: clamp(24px, 6vw, 48px); background: linear-gradient(145deg, color-mix(in srgb, var(--result-accent) 12%, white), #fff 78%); }
     .archetype-result-card__top::after { position: absolute; right: -55px; bottom: -115px; width: 250px; height: 250px; border: 1px solid color-mix(in srgb, var(--result-accent) 20%, transparent); border-radius: 50%; content: ""; }
     .archetype-result-card__brand, .archetype-result-card__label { position: relative; z-index: 1; color: var(--result-accent); font-size: .78rem; font-weight: 850; letter-spacing: .1em; }
-    .archetype-result-card__emoji { display: block; margin: 22px 0 8px; font-size: 3rem; }
+    .archetype-result-card__emoji { display: block; margin: 22px 0 8px; width: 3rem; height: 3rem; }
+    .archetype-result-card__emoji img { display: block; width: 100%; height: 100%; object-fit: contain; }
     .archetype-result-card__image { display: block; width: min(100%, 360px); height: 260px; margin: 22px 0 18px; padding: 10px; border: 1px solid var(--line); border-radius: 18px; background: white; object-fit: contain; }
     .archetype-result-card__label { margin: 0 0 6px; }
     .archetype-result-card__top h3 { position: relative; z-index: 1; max-width: 100%; margin: 0; font-size: clamp(1.6rem, 4.2vw, 2.7rem); line-height: 1.2; letter-spacing: -.05em; word-break: keep-all; overflow-wrap: anywhere; text-wrap: balance; }

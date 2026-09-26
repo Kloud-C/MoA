@@ -40,9 +40,11 @@ The template defines hierarchy and behavior, not identical wording or identical 
 
 ### Result-image template
 
-- Store generated quiz result images under `image/tests/<quiz-id>/` and use stable, descriptive filenames based on result IDs, such as `avoidant.jpg`.
-- Connect each result profile to its local asset with the `image` field in its data file. Keep the shared image/emoji fallback behavior so a missing image does not leave a broken image icon.
-- Use image descriptions that reflect the result without turning a personality label into a diagnosis or stereotype. Images contain no embedded text or logos.
+- Store generated quiz result images under `image/tests/<quiz-id>/` and use stable, descriptive filenames based on result IDs, such as `avoidant.png`.
+- Connect each result profile to its local asset with the `image` or `imageFile` field in its data file. If an image fails to load, use a generated neutral icon or hide the image cleanly; do not fall back to emoji.
+- Match the visible subject to the result copy: a result described as a person with a human role (merchant, guide, healer, musician) should visibly include that person; animal and fantasy-creature results should show the named creature.
+- Keep the image, result title, catchphrase, and explanation about the same subject. Use realistic photography with restrained fantasy details when the content calls for it; avoid extra visual clutter, incorrect anatomy, and scenes that contradict the description.
+- Images contain no embedded text or logos. Give decorative inline icons empty alt text and keep meaningful result images descriptive.
 - Keep a consistent photographic quality within one result family, while varying people, setting, framing, and lighting so the set does not look like one repeated scene.
 - Document each new image folder and its filename-to-result mapping in `image/README.md`.
 
