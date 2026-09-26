@@ -1,6 +1,6 @@
 # molgga UI guidelines
 
-This document is the shared implementation template for new and updated pages. Keep page layouts consistent by using the existing classes in `assets/css/styles.css`; add a new component only when the current patterns do not fit.
+This document is the shared implementation template for new and updated pages. For site-wide priorities and the complete before/after review sequence, see [site-quality-framework.md](site-quality-framework.md). Keep page layouts consistent by using the existing classes in `assets/css/styles.css`; add a new component only when the current patterns do not fit.
 
 ## Starting templates
 
@@ -91,6 +91,8 @@ The template defines hierarchy and behavior, not identical wording or identical 
 ## Localization and cache updates
 
 - Keep structure and component classes the same across `ko/`, `en/`, `ja/`, and `zh/` pages. Translate visible labels through the existing dictionaries when shared scripts provide translations.
+- Localize each page's static `<title>`, description, Open Graph title/description, and Twitter title/description in its HTML file; crawlers and link previews may read these before client-side translation runs. Keep Korean descriptions within Naver's 80-character guidance.
+- Use the same extensionless public route in canonical URLs, every `hreflang`, `og:url`, the sitemap, and tournament share links. The source files may still end in `.html`; that is an implementation detail, not the preferred public URL.
 - When changing shared CSS or JavaScript, add or increment its `?v=...` cache token in every HTML page that loads it, including currently unversioned references.
 - Compare corresponding language pages for matching sections, controls, and accessible labels before publishing.
 
@@ -110,7 +112,8 @@ The template defines hierarchy and behavior, not identical wording or identical 
 - Before adding or changing a World Cup, update `assets/js/worldcup-data.js` and `functions/_shared/worldcup-config.js` together. Game IDs, unique item IDs, and bracket sizes must match exactly; every displayed item needs all four locale names/details and an existing image.
 - Keep the HTML game ID and bracket buttons in every locale aligned with the shared data. Only offer brackets supported by the unique item pool, and confirm a run finishes with exactly `bracket size - 1` choices and one winner.
 - For rankings, check the vote route, ranking route, `MOLGGA_DB` binding, and `migrations/0001_worldcup_votes.sql` together. The migration command must name the same D1 database documented for the Pages binding. Test accepted and rejected requests locally with a mock D1 binding; do not write test votes to production.
-- Keep anonymous vote payloads limited to the winner item, game, bracket size, and an opaque id. Never send individual choices or personal data. The Origin check is a browser request safeguard, not authentication or spam protection.
+- Keep anonymous vote payloads limited to the winner item, game, bracket size, and an opaque id. Never send individual choices or personal data. Require an exact same-origin `Origin` header to reject cross-site and originless browser requests; this check is a request safeguard, not authentication or spam protection.
+- Configure a separate Cloudflare rate-limiting rule for `/api/worldcup-vote` after deployment. Choose a threshold that limits automated bursts without blocking people sharing a network, and confirm expected requests still work. Keep the privacy notice accurate about hosting providers processing network information.
 - For archetype quizzes, verify every score ID and compatibility ID exists in that quiz's profiles, the stated question count matches the data, and every configured result image exists. Derive progress and final-question state from the data length rather than embedding a question number in copy.
-- Before publishing, run `node scripts/audit-integrations.mjs` from the repository root and `git diff --check`. It checks localized page/reference parity, sitemap and redirect targets, analytics tag consistency, World Cup data/API synchronization, quiz result references, image paths, API validation behavior, and D1 documentation consistency.
+- Before publishing, run `node scripts/audit-integrations.mjs` from the repository root and `git diff --check`. It checks localized page/reference parity, clean canonical/alternate/OG/sitemap routes, localized search metadata, analytics tag consistency, World Cup data/API synchronization, quiz result references, image paths, API validation behavior, and D1 documentation consistency.
 - A local audit does not prove the production D1 write path. Check the deployed ranking read endpoint separately, and never submit synthetic production votes just to test it.

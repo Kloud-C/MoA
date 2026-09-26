@@ -34,6 +34,15 @@ function checkLocalReference(page, reference) {
   assert(fs.existsSync(target), `${page}: missing local reference ${reference}`);
 }
 
+function publishedPage(pathname) {
+  const decoded = decodeURIComponent(pathname);
+  const relative = decoded.startsWith("/") ? decoded.slice(1) : decoded;
+  const staticPath = decoded.endsWith("/")
+    ? path.join(root, relative, "index.html")
+    : path.join(root, path.extname(relative) ? relative : `${relative}.html`);
+  return staticPath;
+}
+
 const locales = ["ko", "en", "ja", "zh"];
 const localePages = Object.fromEntries(locales.map((locale) => [
   locale,
@@ -44,13 +53,100 @@ for (const locale of locales.slice(1)) {
   assert(localePages[locale].join("\n") === expectedPages, `${locale}: localized page set differs from ko`);
 }
 
+const homeContentSets = Object.fromEntries(locales.map((locale) => {
+  const html = read(`${locale}/index.html`);
+  const cards = [...html.matchAll(/<article\b([^>]*)>([\s\S]*?)<\/article>/gi)]
+    .filter(([opening]) => /\bclass=["'][^"']*\bcategory-card\b/i.test(opening))
+    .map(([whole, opening, body]) => {
+      const category = opening.match(/\bdata-category=["']([^"']+)["']/i)?.[1] || "";
+      const destination = body.match(/<a\b[^>]*\bhref=["']([^"']+)["']/i)?.[1] || "";
+      return `${category}|${destination}`;
+    });
+  const disclosures = [...html.matchAll(/<details\b([^>]*)>/gi)]
+    .filter(([opening]) => /\bclass=["'][^"']*\bhome-disclosure\b/i.test(opening));
+  assert(cards.length === 8, `${locale}/index.html: expected eight home content cards`);
+  assert(cards.some((card) => card.endsWith("|late-night-worldcup.html")), `${locale}/index.html: late-night matchup is missing from home`);
+  assert(disclosures.length === 2, `${locale}/index.html: both home disclosure sections must remain available`);
+  assert(disclosures.every(([opening]) => !/\bopen(?:\s|=|>)/i.test(opening)), `${locale}/index.html: home disclosures should start collapsed`);
+  return [locale, cards];
+}));
+for (const locale of locales.slice(1)) {
+  assert(JSON.stringify(homeContentSets[locale]) === JSON.stringify(homeContentSets.ko), `${locale}/index.html: home content cards or destinations differ from ko`);
+}
+
 const allHtml = locales.flatMap((locale) => walk(locale, (file) => file.endsWith(".html")));
 for (const page of allHtml) {
   const html = read(page);
+  const [locale] = page.split("/");
+  const slug = path.posix.basename(page, ".html");
   const declaredLocale = html.match(/<html\b[^>]*\blang=["']([^"']+)/i)?.[1]?.slice(0, 2);
-  assert(declaredLocale === page.split("/")[0], `${page}: html lang does not match its locale folder`);
+  assert(declaredLocale === locale, `${page}: html lang does not match its locale folder`);
+  const route = slug === "index" ? `/${locale}/` : `/${locale}/${slug}`;
+  const canonical = html.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i)?.[1];
+  const openGraphUrl = html.match(/<meta\s+property=["']og:url["']\s+content=["']([^"']+)["']/i)?.[1];
+  if (slug !== "404") assert(canonical === `https://molgga.com${route}`, `${page}: canonical does not match the clean published route`);
+  assert(openGraphUrl === `https://molgga.com${route}`, `${page}: og:url does not match the clean published route`);
+  if (slug !== "404") {
+    const alternates = new Map([...html.matchAll(/<link\s+rel=["']alternate["']\s+hreflang=["']([^"']+)["']\s+href=["']([^"']+)["']/gi)].map((match) => [match[1], match[2]]));
+    const localizedRoute = (targetLocale) => slug === "index" ? `/${targetLocale}/` : `/${targetLocale}/${slug}`;
+    for (const [language, targetLocale] of [["ko-KR", "ko"], ["en-US", "en"], ["ja", "ja"], ["zh-CN", "zh"], ["x-default", "ko"]]) {
+      assert(alternates.get(language) === `https://molgga.com${localizedRoute(targetLocale)}`, `${page}: ${language} alternate does not match the clean route`);
+    }
+  }
+  const title = html.match(/<title>(.*?)<\/title>/is)?.[1] || "";
+  const metadataTitles = [title, ...["og:title", "twitter:title"].map((name) => html.match(new RegExp(`<meta[^>]+(?:name|property)=["']${name}["'][^>]+content=["']([^"']*)`, "i"))?.[1] || "")];
+  const descriptions = ["description", "og:description", "twitter:description"].map((name) => html.match(new RegExp(`<meta[^>]+(?:name|property)=["']${name}["'][^>]+content=["']([^"']*)`, "i"))?.[1] || "");
+  assert(metadataTitles.every(Boolean), `${page}: title/Open Graph/Twitter title metadata is incomplete`);
+  assert(descriptions.every(Boolean), `${page}: description/Open Graph/Twitter description metadata is incomplete`);
+  if (locale !== "ko") {
+    for (const [index, value] of metadataTitles.entries()) assert(!/[\uac00-\ud7af]/.test(value), `${page}: non-Korean title ${index + 1} contains Korean text`);
+    for (const [index, description] of descriptions.entries()) assert(!/[\uac00-\ud7af]/.test(description), `${page}: non-Korean description ${index + 1} contains Korean text`);
+  }
+  if (locale === "ko") assert(Array.from(descriptions[0]).length <= 80, `${page}: Korean description exceeds Naver's 80-character guidance`);
   for (const [, reference] of html.matchAll(/\b(?:src|href)=["']([^"']+)["']/gi)) {
     checkLocalReference(page, reference);
+  }
+}
+
+const updatedAboutOfferings = "현재 몰까에서는 주말 취향·야식 월드컵과 동물상, MBTI, 테토/에겐, 애착 유형, 전생, 소비 습관 테스트를 즐길 수 있습니다. 애착 유형 콘텐츠는 연구 자료를 참고하고, 각 콘텐츠의 질문과 설명은 몰까가 직접 작성합니다. 외부 테스트 문항이나 다른 사이트의 결과를 그대로 옮기지 않습니다.";
+const updatedResultNote = "결과는 각 페이지에서 선택한 내용에 따른 참고 정보입니다. 월드컵은 마지막까지 선택한 항목을 보여 주며, 야식 월드컵 랭킹에는 완주한 대진의 우승 메뉴가 집계됩니다. 성향 테스트는 선택에서 드러난 경향을 살펴보는 콘텐츠입니다. 어떤 결과도 전문 심리검사나 의료·법률·교육·채용 판단을 대신하지 않습니다.";
+for (const [locale, expected] of Object.entries({
+  en: ["Try the weekend and late-night food matchups, plus quizzes about animal characters, MBTI, Teto/Egen, attachment styles, past lives, and spending habits. Attachment-style content draws on research, and molgga writes its own questions and explanations. We do not copy questions or results from other sites.", "Results are a reference based on the choices you make on each page. A matchup shows the item you select through the final round; the late-night food leaderboard counts winners from completed matchups. Preference quizzes offer a light look at tendencies in your answers. None of these results replace professional psychological testing or medical, legal, educational, or employment decisions."],
+  ja: ["molggaでは、週末や夜食のマッチ、動物タイプ・MBTI・テト／エゲン・愛着スタイル・前世・お金の使い方に関するテストを楽しめます。愛着スタイルの内容は研究資料を参考にし、質問と説明はmolggaが作成しています。他のテストの設問や結果をそのまま転載していません。", "結果は各ページで選んだ内容をもとにした参考情報です。マッチでは最後まで選んだ項目が表示され、夜食マッチのランキングには完了した対戦の優勝メニューが集計されます。好みのテストは回答に表れた傾向を気軽に見るためのものです。専門的な心理検査や医療・法律・教育・採用の判断に代わるものではありません。"],
+  zh: ["molgga提供周末和夜宵选择赛，以及动物、MBTI、Teto/Egen、依恋类型、前世和消费习惯测试。依恋类型内容参考相关研究，各项问题和说明均由molgga原创。我们不会照搬其他测试的问题或其他网站的结果。", "结果仅供参考，依据你在各页面中的选择生成。选择赛会显示你一路选到最后的项目；夜宵排行榜只统计完成整场对决后胜出的菜单。偏好测试用于轻松了解答案中体现的倾向，不能替代专业心理测评或医疗、法律、教育、招聘等判断。"]
+})) {
+  const aboutHtml = read(`${locale}/about.html`);
+  assert(aboutHtml.includes(updatedAboutOfferings) && aboutHtml.includes(updatedResultNote), `${locale}: About page source text is out of sync with its translation keys`);
+  const translationSandbox = {
+    window: {},
+    location: { pathname: `/${locale}/about` },
+    document: { readyState: "loading", addEventListener() {} },
+    MutationObserver: class { observe() {} },
+    NodeFilter: { SHOW_TEXT: 4 }
+  };
+  vm.runInNewContext(read("assets/js/i18n-catalog.js"), translationSandbox, { timeout: 1000 });
+  vm.runInNewContext(read("assets/js/i18n.js"), translationSandbox, { timeout: 1000 });
+  const homeHtml = read(`${locale}/index.html`)
+    .replace(/<script\b[\s\S]*?<\/script>/gi, "")
+    .replace(/<!--[\s\S]*?-->/g, "");
+  const homeText = homeHtml.replace(/<[^>]*>/g, "\n").split(/\n/)
+    .map((value) => value.replace(/&amp;/g, "&").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim())
+    .filter((value) => /[\uac00-\ud7af]/.test(value));
+  const homeLabels = [...homeHtml.matchAll(/\b(?:aria-label|title|placeholder)=["']([^"']+)["']/gi)]
+    .map(([, value]) => value)
+    .filter((value) => /[\uac00-\ud7af]/.test(value));
+  const untranslatedHomeCopy = [...new Set([...homeText, ...homeLabels])]
+    .filter((value) => translationSandbox.window.MOA_I18N.t(value) === value);
+  assert(untranslatedHomeCopy.length === 0, `${locale}: home page has missing translations: ${untranslatedHomeCopy.join(" | ")}`);
+  assert(translationSandbox.window.MOA_I18N.t(updatedAboutOfferings) === expected[0], `${locale}: About offerings paragraph translation is missing or stale`);
+  assert(translationSandbox.window.MOA_I18N.t(updatedResultNote) === expected[1], `${locale}: result interpretation paragraph translation is missing or stale`);
+  if (locale === "ja") {
+    assert(!/ナダム/.test(translationSandbox.window.MOA_I18N.t("가까움도 나다움도 함께 지켜요.")), "ja: attachment result copy contains a transliteration error");
+    assert(!/制格/.test(translationSandbox.window.MOA_I18N.t("전생의 당신은 궁과 마을 사이를 오가던 심부름꾼 토끼였어요. 발이 빨라 급한 소식을 전하는 데 늘 제격이었고, 가는 길에 새로운 친구도 자주 만들었죠.")), "ja: past-life result copy contains a mistranslation");
+  }
+  if (locale === "zh") {
+    assert(translationSandbox.window.MOA_I18N.t("/ 몰까 소개") === "/ 关于 molgga", "zh: About breadcrumb contains a corrupted translation");
+    assert(translationSandbox.window.MOA_I18N.t("문의 안내") === "联系说明", "zh: contact label contains a corrupted translation");
   }
 }
 
@@ -61,16 +157,15 @@ for (const [, reference] of read("assets/css/styles.css").matchAll(/url\(["']?([
 const sitemap = read("sitemap.xml");
 for (const [, url] of sitemap.matchAll(/<loc>([^<]+)<\/loc>/gi)) {
   const pathname = new URL(url, "https://molgga.com").pathname;
-  const page = pathname.endsWith("/") ? `${pathname}index.html` : pathname;
-  assert(fs.existsSync(path.join(root, page.slice(1))), `sitemap.xml: missing page ${pathname}`);
+  assert(!/\.html$/i.test(pathname), `sitemap.xml: legacy .html route is listed: ${pathname}`);
+  assert(fs.existsSync(publishedPage(pathname)), `sitemap.xml: missing page ${pathname}`);
 }
 
 const redirectLines = read("_redirects").split(/\r?\n/).filter((line) => line.trim() && !line.trim().startsWith("#"));
 for (const line of redirectLines) {
   const [, destination] = line.trim().split(/\s+/);
   if (!destination || destination.includes(":")) continue;
-  const page = destination.endsWith("/") ? `${destination}index.html` : destination;
-  assert(fs.existsSync(path.join(root, page.slice(1))), `_redirects: missing destination ${destination}`);
+  assert(fs.existsSync(publishedPage(destination)), `_redirects: missing destination ${destination}`);
 }
 
 for (const file of [...walk("assets/js", (entry) => entry.endsWith(".js")), ...walk("functions", (entry) => entry.endsWith(".js")), "scripts/audit-integrations.mjs"]) {
@@ -244,6 +339,8 @@ assert(response.status === 200 && body.accepted === true, "vote API rejects a va
 assert(writes.length === 1 && writes[0].values.join("|") === "audit-vote-123456|late-night-food|cup-ramyeon|16", "vote API writes unexpected fields");
 response = await post(validVote, "https://attacker.example");
 assert(response.status === 403, "vote API accepts a mismatched Origin");
+response = await onRequestPost({ request: new Request("https://molgga.com/api/worldcup-vote", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(validVote) }), env: { MOLGGA_DB: mockDb } });
+assert(response.status === 403, "vote API accepts a request without an Origin header");
 response = await post({ ...validVote, itemId: "not-a-menu-item" });
 assert(response.status === 400, "vote API accepts an unknown item ID");
 response = await post({ ...validVote, gameId: "__proto__" });
@@ -271,6 +368,16 @@ const documentedDatabase = readme.match(/D1 데이터베이스 `([^`]+)`/)?.[1];
 const migrationCommand = readme.match(/wrangler d1 execute ([^\s`]+)/)?.[1];
 assert(Boolean(documentedDatabase) && documentedDatabase === migrationCommand, "README: D1 database name differs from migration command");
 assert(readme.includes("MOLGGA_DB") && read("functions/api/worldcup-vote.js").includes("env.MOLGGA_DB") && read("functions/api/worldcup-rankings.js").includes("env.MOLGGA_DB"), "D1 binding name differs between documentation and API routes");
+assert(readme.includes("Rate Limiting 규칙") && readme.includes("Origin"), "README does not document Origin validation and the external rate-limiting requirement");
+const i18nScriptVersions = new Set();
+for (const page of allHtml) {
+  const references = [...read(page).matchAll(/assets\/js\/i18n\.js(?:\?v=([^"']+))?/g)];
+  for (const [, version] of references) {
+    assert(Boolean(version), `${page}: i18n.js is missing a cache token`);
+    if (version) i18nScriptVersions.add(version);
+  }
+}
+assert(i18nScriptVersions.size === 1, `localized pages use missing or inconsistent i18n.js cache tokens: ${[...i18nScriptVersions].join(", ")}`);
 const migration = read("migrations/0001_worldcup_votes.sql");
 for (const column of ["vote_id", "game_id", "item_id", "bracket_size", "created_at"]) {
   assert(new RegExp(`\\b${column}\\b`, "i").test(migration), `D1 migration is missing ${column}`);
@@ -285,5 +392,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log(`Integration audit passed: ${checks} checks across ${allHtml.length} localized pages, World Cup data/APIs, archetype data, assets, sitemap, redirects, and D1 docs.`);
+  console.log(`Integration audit passed: ${checks} checks across ${allHtml.length} localized pages, localized SEO and translations, World Cup data/APIs, archetype data, assets, sitemap, redirects, and D1 docs.`);
 }

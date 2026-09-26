@@ -8,7 +8,7 @@ const MAX_BODY_BYTES = 2048;
 
 export async function onRequestPost({ request, env }) {
   const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin) return json({ error: "origin_not_allowed" }, 403);
+  if (!origin || origin !== new URL(request.url).origin) return json({ error: "origin_not_allowed" }, 403);
   if (!env.MOLGGA_DB) return json({ error: "ranking_not_configured" }, 503);
   const contentLength = Number(request.headers.get("content-length"));
   if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) return json({ error: "request_too_large" }, 413);

@@ -42,7 +42,7 @@
     return shuffled;
   };
   const roundTitle = (size) => tr(({ 32: "32강", 16: "16강", 8: "8강", 4: "4강", 2: "결승" })[size] || "월드컵");
-  const pageUrl = () => `https://molgga.com/${language}/${config.page}`;
+  const pageUrl = () => `https://molgga.com/${language}/${config.page.replace(/\.html$/, "")}`;
   let fallbackVotes = {};
   const currentItems = () => config.items;
   const showStart = () => {

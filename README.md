@@ -20,6 +20,7 @@
 - `functions/`, `migrations/`: Cloudflare Pages 월드컵 랭킹 API와 D1 스키마
 - `_redirects`: 루트 및 기존 주소를 한국어 경로로 연결
 - `robots.txt`, `sitemap.xml`, `ads.txt`: 검색·광고 크롤러 파일
+- `docs/site-quality-framework.md`, `docs/ui-guidelines.md`: 변경 우선순위, 페이지 구성 및 검토 기준
 
 ## 로컬에서 보기
 
@@ -29,7 +30,7 @@
 
 Cloudflare Pages가 저장소 루트를 정적 사이트로 제공합니다. `main` 브랜치에 푸시하면 연결된 Pages 프로젝트가 자동 배포됩니다.
 
-기존 루트 주소(`/worldcup.html` 등)는 `_redirects`를 통해 `/ko/worldcup.html`로 이동합니다.
+기존 루트 주소(`/worldcup.html` 등)는 `_redirects`를 통해 `/ko/worldcup` 같은 확장자 없는 주소로 이동합니다. 페이지의 canonical, 언어별 대체 주소, 사이트맵도 같은 공개 URL을 사용합니다.
 
 ## 월드컵 인기 랭킹 설정
 
@@ -41,9 +42,11 @@ Cloudflare Pages가 저장소 루트를 정적 사이트로 제공합니다. `ma
 npx wrangler d1 execute molgga-worldcup-rankings --remote --file=migrations/0001_worldcup_votes.sql
 ```
 
-데이터베이스가 연결되기 전에는 랭킹이 현재 탭에서 완주한 결과만 보여줍니다. 연결 후에는 완주 시 최종 우승 항목·대진 규모·일회성 임의 ID만 저장하며 선택 과정은 전송하지 않습니다.
+데이터베이스가 연결되기 전에는 랭킹이 현재 탭에서 완주한 결과만 보여줍니다. 연결 후에는 완주 시 최종 우승 항목·대진 규모·일회성 임의 ID만 저장하며 선택 과정은 전송하지 않습니다. 저장 API는 허용된 게임·항목만 받고, 동일한 임의 ID의 중복 저장을 막으며, 요청의 `Origin`이 사이트와 일치해야 합니다. `Origin` 검사는 브라우저 교차 사이트 요청을 줄이는 장치이며 인증이나 봇 방지 기능은 아닙니다. 대량 투표 방지는 Cloudflare 대시보드의 WAF에서 `/api/worldcup-vote`의 POST 요청을 대상으로 Rate Limiting 규칙을 설정해야 합니다. 규칙을 적용하기 전 계정 요금제에서 해당 기능을 지원하는지 확인하고, 공유 네트워크 이용자가 불편을 겪지 않을 임계값을 선택하세요. [Cloudflare WAF Rate Limiting 안내](https://developers.cloudflare.com/waf/rate-limiting-rules/create-zone-dashboard/)를 참고할 수 있습니다. 이 프로젝트의 Cloudflare 계정 설정은 저장소에서 확인하거나 변경할 수 없으므로 배포 후 규칙을 직접 켜고 확인해야 합니다.
 
-연동 상태를 로컬에서 점검하려면 저장소 루트에서 `node scripts/audit-integrations.mjs`를 실행합니다. 페이지 경로, 언어별 페이지 구성, 월드컵 프런트엔드 데이터와 API 허용 목록, 문항의 결과 ID, 이미지 경로, API 요청 검증, 랭킹 바인딩 문서를 확인합니다.
+연동 상태를 로컬에서 점검하려면 저장소 루트에서 `node scripts/audit-integrations.mjs`를 실행합니다. 페이지 경로와 SEO 메타데이터, 홈 카드·접이식 안내의 언어 간 일치, 홈 문구 번역, 월드컵 프런트엔드 데이터와 API 허용 목록, 문항의 결과 ID, 이미지 경로, API 요청 검증, 랭킹 바인딩 문서와 공통 번역 스크립트 캐시 토큰을 확인합니다.
+
+사이트 변경 전후의 우선순위와 검토 순서는 [사이트 품질 프레임](docs/site-quality-framework.md)을 따릅니다. 페이지 레이아웃·문항·결과·모바일 UI는 [UI 가이드](docs/ui-guidelines.md)를 함께 확인합니다.
 
 ## 카카오톡 공유 설정
 
