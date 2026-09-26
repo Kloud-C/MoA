@@ -221,16 +221,16 @@
     .archetype-navigation button:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
     .archetype-quiz > .form-message:empty { display: none; }
     .archetype-result-card { overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: white; box-shadow: var(--shadow); }
-    .archetype-result-card__top { position: relative; overflow: hidden; padding: clamp(24px, 6vw, 48px); background: linear-gradient(145deg, color-mix(in srgb, var(--result-accent) 12%, white), #fff 78%); }
+    .archetype-result-card__top { position: relative; overflow: hidden; padding: clamp(24px, 6vw, 48px); background: linear-gradient(145deg, color-mix(in srgb, var(--result-accent) 12%, white), #fff 78%); text-align: center; }
     .archetype-result-card__top::after { position: absolute; right: -55px; bottom: -115px; width: 250px; height: 250px; border: 1px solid color-mix(in srgb, var(--result-accent) 20%, transparent); border-radius: 50%; content: ""; }
     .archetype-result-card__brand, .archetype-result-card__label { position: relative; z-index: 1; color: var(--result-accent); font-size: .78rem; font-weight: 850; letter-spacing: .1em; }
-    .archetype-result-card__emoji { display: block; margin: 22px 0 8px; width: 3rem; height: 3rem; }
+    .archetype-result-card__emoji { display: block; margin: 22px auto 8px; width: 3rem; height: 3rem; }
     .archetype-result-card__emoji img { display: block; width: 100%; height: 100%; object-fit: contain; }
-    .archetype-result-card__image { display: block; width: min(100%, 360px); height: 260px; margin: 22px 0 18px; padding: 10px; border: 1px solid var(--line); border-radius: 18px; background: white; object-fit: contain; }
+    .archetype-result-card__image { display: block; width: min(100%, 360px); height: 260px; margin: 22px auto 18px; padding: 10px; border: 1px solid var(--line); border-radius: 18px; background: white; object-fit: contain; }
     .archetype-result-card__label { margin: 0 0 6px; }
-    .archetype-result-card__top h3 { position: relative; z-index: 1; max-width: 100%; margin: 0; font-size: clamp(1.6rem, 4.2vw, 2.7rem); line-height: 1.2; letter-spacing: -.05em; word-break: keep-all; overflow-wrap: anywhere; text-wrap: balance; }
+    .archetype-result-card__top h3 { position: relative; z-index: 1; max-width: 100%; margin: 0 auto; font-size: clamp(1.6rem, 4.2vw, 2.7rem); line-height: 1.2; letter-spacing: -.05em; word-break: keep-all; overflow-wrap: anywhere; text-wrap: balance; }
     .archetype-result-card__top h3:focus { outline: none; }
-    .archetype-result-card__catchphrase { position: relative; z-index: 1; margin: 10px 0 0; color: var(--ink); font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 750; }
+    .archetype-result-card__catchphrase { position: relative; z-index: 1; max-width: 58ch; margin: 10px auto 0; color: var(--ink); font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 750; text-wrap: balance; }
     .archetype-result-card__body { padding: clamp(22px, 5vw, 36px); }
     .archetype-result-card__body > p:first-child { margin-top: 0; font-size: 1.04rem; line-height: 1.9; }
     .archetype-result-card__compat { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }

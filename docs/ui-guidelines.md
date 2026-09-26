@@ -20,6 +20,8 @@ Keep the same reading order across quiz pages while allowing the subject matter 
 3. **Result:** result label, image (when the quiz has a result image set), name, short catchphrase, concise explanation, and any quiz-specific detail cards. Use the shared `archetype-test.js` renderer for archetype quizzes.
 4. **Actions:** restart and share controls in the same order and with the shared button styles.
 
+- Center the result hero presentation (brand label, result image, result label, title, and catchphrase) within its card on every quiz. Keep longer explanatory copy and detail cards left-aligned for comfortable reading.
+
 The template defines hierarchy and behavior, not identical wording or identical result content. Keep each result description specific to its type. Prefer a short opening summary followed by a few useful, distinct details; avoid repeating the same generic paragraph across every result.
 
 ### Promotional copy
