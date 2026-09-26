@@ -8,7 +8,7 @@
 
 ## GitHub 저장소
 
-이 프로젝트는 `https://github.com/Kloud-C/MoA` 저장소의 `main` 브랜치에 연결되어 있습니다. 변경 사항을 기록하고 GitHub에 올리려면 프로젝트 폴더에서 다음 명령을 실행하세요.
+이 프로젝트는 `https://github.com/Kloud-C/MolGGa` 저장소의 `main` 브랜치에 연결되어 있습니다. 변경 사항을 기록하고 GitHub에 올리려면 프로젝트 폴더에서 다음 명령을 실행하세요.
 
 ```sh
 git add .
@@ -18,7 +18,7 @@ git push
 
 ## Cloudflare Pages 자동 배포
 
-Cloudflare Pages의 Git 연동을 한 번 설정하면 `main`에 변경 사항을 푸시할 때 운영 사이트를 자동으로 배포할 수 있습니다. Cloudflare 대시보드에서 **Workers & Pages → Create application → Pages → Connect to Git**을 선택하고 GitHub를 연결한 뒤 `Kloud-C/MoA` 저장소를 고르세요. GitHub 인증과 저장소 접근 권한 허용은 계정 소유자가 직접 진행해야 합니다.
+Cloudflare Pages의 Git 연동을 한 번 설정하면 `main`에 변경 사항을 푸시할 때 운영 사이트를 자동으로 배포할 수 있습니다. Cloudflare 대시보드에서 **Workers & Pages → Create application → Pages → Connect to Git**을 선택하고 GitHub를 연결한 뒤 `Kloud-C/MolGGa` 저장소를 고르세요. GitHub 인증과 저장소 접근 권한 허용은 계정 소유자가 직접 진행해야 합니다.
 
 이 사이트는 빌드 도구가 없는 정적 HTML/CSS/JavaScript 사이트이며 Cloudflare Pages가 저장소 루트에서 제공합니다. 현재 연결된 프로젝트는 `main` 푸시에 따라 자동 배포합니다.
 
