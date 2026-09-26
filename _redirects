@@ -1,4 +1,4 @@
-/ /ko/ 302
+/ /ko/ 301
 /index.html /ko/ 301
 /about.html /ko/about.html 301
 /animal-test.html /ko/animal-test.html 301
@@ -11,6 +11,7 @@
 /terms.html /ko/terms.html 301
 /teto-egen-test.html /ko/teto-egen-test.html 301
 /worldcup.html /ko/worldcup.html 301
+/late-night-worldcup.html /ko/late-night-worldcup.html 301
 
 /Kr /ko/ 301
 /Kr/* /ko/:splat 301

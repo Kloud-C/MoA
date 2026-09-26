@@ -1,0 +1,140 @@
+(() => {
+  const locale = (ko, en, ja, zh) => ({ ko, en, ja, zh });
+  const image = (folder, id, extension = "webp") => `../image/worldcup/${folder}/${id}.${extension}`;
+  const weekendNames = [
+    ["movie-night", "집에서 좋아하는 영화 보기", "Watch a favorite movie at home", "家で好きな映画を見る", "在家看喜欢的电影"],
+    ["new-restaurant", "동네의 새로운 맛집 가기", "Try a new neighborhood restaurant", "近所の新しいお店に行く", "去附近的新餐馆"],
+    ["forest-walk", "공원이나 숲길 산책하기", "Walk in a park or forest", "公園や森の道を散歩する", "去公园或林间散步"],
+    ["favorite-hobby", "취미 하나에 깊이 몰입하기", "Spend time on a favorite hobby", "好きな趣味にじっくり取り組む", "专注做一项喜欢的爱好"],
+    ["cafe-chat", "친구와 카페에서 이야기하기", "Chat with a friend at a cafe", "友達とカフェでおしゃべりする", "和朋友在咖啡馆聊天"],
+    ["short-drive", "가까운 곳으로 드라이브하기", "Take a short drive nearby", "近場へドライブする", "去附近兜风"],
+    ["cook-at-home", "집에서 천천히 요리하기", "Take your time cooking at home", "家でゆっくり料理する", "在家慢慢做饭"],
+    ["light-exercise", "가벼운 운동이나 스트레칭하기", "Do light exercise or stretch", "軽い運動やストレッチをする", "做些轻运动或拉伸"]
+  ].map(([id, ko, en, ja, zh]) => ({
+    id, name: locale(ko, en, ja, zh),
+    detail: locale("부담 없이 즐길 수 있는 주말 활동이에요.", "A relaxed way to spend part of your weekend.", "気軽に楽しめる週末の過ごし方です。", "轻松享受周末的一种方式。"),
+    image: `../image/my week/${({ "movie-night": "Watch a movie at home", "new-restaurant": "Try a new local restaurant", "forest-walk": "Walk in a park or forest", "favorite-hobby": "Enjoy a favorite hobby", "cafe-chat": "Chat with a friend at a cafe", "short-drive": "Take a nearby drive", "cook-at-home": "Cook at home", "light-exercise": "Do light exercise or stretching" })[id]}.jpg`
+  }));
+
+  const foodNames = [
+    ["tteokbokki", "떡볶이", "Tteokbokki", "トッポッキ", "辣炒年糕"],
+    ["fried-chicken", "배달 치킨", "Korean fried chicken", "韓国フライドチキン", "韩式炸鸡"],
+    ["ramyeon", "라면", "Ramyeon", "ラーメン", "韩式拉面"],
+    ["gimbap", "김밥", "Gimbap", "キンパ", "紫菜包饭"],
+    ["kimchi-fried-rice", "김치볶음밥", "Kimchi fried rice", "キムチチャーハン", "泡菜炒饭"],
+    ["korean-corn-dog", "한국식 핫도그", "Korean corn dog", "韓国式コーンドッグ", "韩式热狗"],
+    ["fish-cake-soup", "어묵탕", "Fish cake soup", "おでんスープ", "鱼饼汤"],
+    ["fried-mandu", "군만두", "Pan-fried dumplings", "焼き餃子", "煎饺"],
+    ["kimchi-pancake", "김치전", "Kimchi pancake", "キムチチヂミ", "泡菜煎饼"],
+    ["spicy-chicken-feet", "매운 닭발", "Spicy chicken feet", "辛い鶏足", "香辣鸡爪"],
+    ["bossam", "보쌈", "Bossam pork wraps", "ポッサム", "韩式菜包肉"],
+    ["jokbal", "족발", "Braised pig trotters", "豚足", "韩式酱猪蹄"],
+    ["sundae", "순대", "Korean sundae", "韓国式スンデ", "韩式米肠"],
+    ["budae-jjigae", "부대찌개", "Army stew", "プデチゲ", "部队锅"],
+    ["pork-belly", "삼겹살", "Grilled pork belly", "サムギョプサル", "韩式烤五花肉"],
+    ["dakgangjeong", "닭강정", "Sweet crispy chicken", "タッカンジョン", "韩式甜辣炸鸡"],
+    ["japchae", "잡채", "Japchae noodles", "チャプチェ", "韩式杂菜"],
+    ["tteok-skewers", "떡꼬치", "Rice cake skewers", "トッコチ", "韩式年糕串"],
+    ["corn-cheese", "콘치즈", "Corn cheese", "コーンチーズ", "芝士玉米"],
+    ["seafood-pancake", "해물파전", "Seafood scallion pancake", "海鮮ネギチヂミ", "海鲜葱饼"],
+    ["stir-fried-squid", "오징어볶음", "Spicy stir-fried squid", "イカ炒め", "辣炒鱿鱼"],
+    ["chicken-gizzard", "닭똥집볶음", "Stir-fried chicken gizzards", "砂肝炒め", "炒鸡胗"],
+    ["fried-shrimp", "새우튀김", "Fried shrimp", "エビフライ", "炸虾"],
+    ["squid-tempura", "오징어튀김", "Fried squid", "イカの天ぷら", "炸鱿鱼"],
+    ["potato-pancake", "감자전", "Potato pancake", "ジャガイモチヂミ", "土豆煎饼"],
+    ["gamjatang", "감자탕", "Pork bone stew", "カムジャタン", "土豆脊骨汤"],
+    ["jjolmyeon", "쫄면", "Spicy chewy noodles", "チョルミョン", "韩式辣拌面"],
+    ["jjajang-ramyeon", "짜장라면", "Black bean ramyeon", "ジャージャーラーメン", "韩式炸酱面"],
+    ["bibim-myeon", "비빔면", "Spicy mixed noodles", "ビビン麺", "韩式拌面"],
+    ["gomtang", "곰탕", "Korean beef soup", "コムタン", "韩式牛骨汤"],
+    ["chicken-skewer", "닭꼬치", "Chicken skewers", "焼き鳥串", "韩式鸡肉串"],
+    ["fish-cake-skewer", "어묵꼬치", "Fish cake skewers", "おでん串", "鱼饼串"],
+    ["hotteok", "호떡", "Hotteok", "ホットク", "韩式糖饼"],
+    ["bungeoppang", "붕어빵", "Bungeoppang", "たい焼き", "鲫鱼饼"],
+    ["twisted-donut", "꽈배기", "Korean twisted doughnut", "韓国式ツイストドーナツ", "韩式麻花"],
+    ["korean-pizza", "피자", "Pizza", "ピザ", "披萨"],
+    ["cheese-balls", "치즈볼", "Cheese balls", "チーズボール", "芝士球"],
+    ["sweet-potato-fries", "고구마스틱", "Sweet potato fries", "さつまいもスティック", "红薯条"],
+    ["fruit-cup", "컵과일", "Fresh fruit cup", "カットフルーツ", "鲜切水果杯"],
+    ["ice-cream", "아이스크림", "Ice cream", "アイスクリーム", "冰淇淋"],
+    ["hamburger", "햄버거", "Hamburger", "ハンバーガー", "汉堡"],
+    ["french-fries", "감자튀김", "French fries", "フライドポテト", "薯条"],
+    ["nachos", "나초", "Nachos", "ナチョス", "玉米片"],
+    ["cream-pasta", "크림파스타", "Cream pasta", "クリームパスタ", "奶油意面"],
+    ["grilled-eel", "장어구이", "Grilled eel", "うなぎの蒲焼き", "烤鳗鱼"],
+    ["egg-toast", "길거리 토스트", "Korean street toast", "韓国式トースト", "韩式街头吐司"],
+    ["tuna-rice-ball", "참치마요 주먹밥", "Tuna mayo rice ball", "ツナマヨおにぎり", "金枪鱼蛋黄酱饭团"],
+    ["fried-seaweed-roll", "김말이튀김", "Fried seaweed rolls", "春雨の海苔巻き揚げ", "炸紫菜卷"],
+    ["spicy-pork", "제육볶음", "Spicy stir-fried pork", "豚肉の辛味炒め", "辣炒猪肉"],
+    ["cup-ramyeon", "컵라면", "Cup ramyeon", "カップラーメン", "杯面"]
+  ];
+  const foodDetails = {
+    "tteokbokki": locale("쫄깃한 떡에 매콤달콤한 양념이 배어드는 분식 대표 메뉴예요.", "Chewy rice cakes soak up a sweet and spicy sauce.", "もちもちの餅に甘辛いソースがよく絡む、韓国の定番屋台料理です。", "软糯年糕裹上甜辣酱汁，是经典韩式小吃。"),
+    "fried-chicken": locale("바삭한 튀김옷과 촉촉한 살코기를 시원한 음료와 곁들이기 좋아요.", "Crisp coating and juicy chicken make a great match for a cold drink.", "カリッとした衣とジューシーな肉を、冷たい飲み物と一緒に楽しめます。", "酥脆外皮包着鲜嫩鸡肉，配一杯冰饮正合适。"),
+    "ramyeon": locale("꼬들한 면발과 뜨끈한 국물이 늦은 밤 허기를 달래줘요.", "Springy noodles and steaming broth hit the spot late at night.", "歯ごたえのある麺と熱々のスープで、夜食にぴったりです。", "劲道的面条配上热乎乎的汤，深夜吃很满足。"),
+    "gimbap": locale("김과 밥 안에 여러 재료를 넣어 한입씩 간편하게 먹어요.", "Rice, seaweed, and savory fillings come together in easy-to-eat slices.", "海苔とご飯に具材を巻いた、手軽に食べられる一品です。", "米饭和多种馅料卷入海苔中，切成小段方便入口。"),
+    "kimchi-fried-rice": locale("잘 익은 김치의 감칠맛을 밥에 볶아 고소하게 즐기는 한 그릇이에요.", "Tangy aged kimchi is stir-fried with rice for a savory, comforting bowl.", "熟成キムチの旨みをご飯に絡めて炒めた、香ばしい一皿です。", "用熟成泡菜炒饭，酸香开胃又有饱足感。"),
+    "korean-corn-dog": locale("쫀득한 반죽 속 소시지와 바삭한 겉면을 한 손에 즐겨요.", "A chewy batter and savory sausage make this an easy handheld snack.", "もちっとした生地とソーセージを、片手で気軽に楽しめます。", "外层酥脆、内里包着香肠，是方便拿着吃的小吃。"),
+    "fish-cake-soup": locale("따뜻한 국물에 담긴 말랑한 어묵으로 속을 편하게 달래요.", "Tender fish cakes in warm broth make a soothing late-night snack.", "温かいだしに浸かった柔らかな練り物で、ほっと一息つけます。", "热汤里煮着软嫩鱼饼，暖胃又舒服。"),
+    "fried-mandu": locale("노릇한 만두피 안에 고기와 채소의 육즙이 꽉 차 있어요.", "Golden dumpling wrappers hold a juicy mix of meat and vegetables.", "香ばしく焼いた皮の中に、肉や野菜の旨みが詰まっています。", "煎得金黄的饺子皮里，包着鲜香多汁的肉和蔬菜。"),
+    "kimchi-pancake": locale("새콤한 김치와 바삭한 가장자리가 어우러지는 부침개예요.", "Tangy kimchi and crisp edges make every bite of this pancake satisfying.", "キムチの酸味とカリッとした端の食感が楽しめるチヂミです。", "泡菜的酸香搭配煎得酥脆的边缘，越嚼越香。"),
+    "spicy-chicken-feet": locale("매콤한 양념과 쫄깃한 식감을 천천히 즐기는 야식이에요.", "Spicy sauce and chewy texture make this a slow, flavorful snack.", "辛い味付けと独特の歯ごたえを、ゆっくり味わう夜食です。", "香辣入味、口感弹韧，适合慢慢啃着享用。"),
+    "bossam": locale("부드럽게 삶은 돼지고기를 김치나 쌈채소에 곁들여 먹어요.", "Tender boiled pork is delicious wrapped with kimchi or leafy greens.", "柔らかく茹でた豚肉を、キムチや葉野菜と一緒に包んで食べます。", "软嫩的白切猪肉搭配泡菜或生菜包着吃。"),
+    "jokbal": locale("쫄깃한 껍질과 촉촉한 살코기를 새우젓에 곁들여요.", "Tender pork and pleasantly chewy skin pair well with salted shrimp.", "もちっとした皮としっとりした肉を、アミの塩辛と一緒に味わいます。", "弹韧的猪皮和软嫩肉块，配虾酱吃更提味。"),
+    "sundae": locale("쫄깃한 순대를 소금이나 따뜻한 떡볶이 국물에 찍어 먹어요.", "Chewy Korean blood sausage is often dipped in salt or tteokbokki sauce.", "もちもちのスンデは、塩やトッポッキのソースにつけて食べます。", "弹韧的韩式米肠蘸盐或炒年糕酱汁都很美味。"),
+    "budae-jjigae": locale("햄과 소시지, 김치가 얼큰한 국물에서 어우러지는 찌개예요.", "Ham, sausage, and kimchi simmer together in a hearty, spicy stew.", "ハムやソーセージ、キムチを辛みのあるスープで煮込んだ鍋料理です。", "火腿、香肠和泡菜在微辣汤底里煮成一锅暖心浓汤。"),
+    "pork-belly": locale("불판에 구워 겉은 노릇하게, 속은 촉촉하게 즐기는 고기예요.", "Grilled until browned outside and juicy inside, pork belly is great with wraps.", "表面を香ばしく焼き、中はジューシーに仕上げた豚バラ肉です。", "五花肉在烤盘上煎得外焦里嫩，也适合搭配生菜包着吃。"),
+    "dakgangjeong": locale("한입 크기 닭튀김에 달콤매콤한 소스가 코팅돼요.", "Bite-size fried chicken is coated in a glossy sweet-and-spicy sauce.", "一口サイズの唐揚げに、甘辛いソースを絡めた料理です。", "小块炸鸡裹上亮泽的甜辣酱汁，方便一口一个。"),
+    "japchae": locale("쫄깃한 당면과 채소를 간장 양념에 볶아 달큰하게 즐겨요.", "Chewy glass noodles and vegetables are tossed in a gently sweet soy sauce.", "もちもちの春雨と野菜を、甘めの醤油だれで炒めています。", "劲道的粉丝和蔬菜拌炒酱油调味，咸香中带点甜。"),
+    "tteok-skewers": locale("쫀득한 떡을 꼬치에 끼워 달콤한 양념과 함께 구워요.", "Chewy rice cakes are skewered, grilled, and brushed with sweet sauce.", "もちもちの餅を串に刺して焼き、甘いソースを絡めます。", "年糕串烤至微焦，再刷上甜酱，外香里糯。"),
+    "corn-cheese": locale("톡톡 터지는 옥수수와 녹아내린 치즈를 따뜻하게 떠먹어요.", "Sweet corn and bubbling melted cheese are served warm by the spoonful.", "甘いコーンにとろけるチーズをのせ、熱々のうちにいただきます。", "香甜玉米铺上融化的芝士，趁热用勺子舀着吃。"),
+    "seafood-pancake": locale("바삭한 파전 사이로 오징어와 새우의 감칠맛이 느껴져요.", "Crisp scallion pancake is dotted with savory squid and shrimp.", "カリッと焼いたネギの生地に、イカやエビの旨みが広がります。", "酥脆葱饼里夹着鱿鱼和虾，海鲜鲜味十足。"),
+    "stir-fried-squid": locale("쫄깃한 오징어에 매콤한 양념과 채소를 함께 볶았어요.", "Chewy squid and vegetables are stir-fried in a lively spicy sauce.", "歯ごたえのあるイカと野菜を、ピリ辛のたれで炒めています。", "弹嫩鱿鱼和蔬菜一起用辣酱翻炒，香辣下饭。"),
+    "chicken-gizzard": locale("오독하고 쫄깃한 닭근위를 마늘과 함께 볶아 고소해요.", "Chicken gizzards are stir-fried with garlic for a savory, chewy bite.", "コリコリした砂肝をニンニクと炒めた、香ばしいおつまみです。", "鸡胗与蒜片同炒，口感脆韧，蒜香浓郁。"),
+    "fried-shrimp": locale("바삭한 튀김을 깨물면 통통한 새우의 단맛이 퍼져요.", "A crisp golden coating gives way to plump, naturally sweet shrimp.", "サクッとした衣の中から、ぷりっとしたエビの甘みが広がります。", "咬开酥脆外衣，鲜甜饱满的虾肉就在里面。"),
+    "squid-tempura": locale("쫄깃한 오징어를 얇은 튀김옷으로 감싸 바삭하게 튀겼어요.", "Tender squid is wrapped in a light batter and fried until crisp.", "イカに薄い衣をつけてカリッと揚げた、食感のよい一品です。", "鱿鱼裹上薄薄的面衣炸至酥脆，外脆内弹。"),
+    "potato-pancake": locale("간 감자를 노릇하게 부쳐 겉은 바삭하고 속은 쫀득해요.", "Grated potato is pan-fried until crisp outside and tender inside.", "すりおろしたジャガイモを焼き、外はカリッと中はもちっと仕上げます。", "土豆擦碎后煎至两面金黄，外脆内软糯。"),
+    "gamjatang": locale("진한 돼지등뼈 국물에 우거지와 감자가 어우러져 든든해요.", "Pork bone broth, leafy greens, and potatoes make a hearty stew.", "濃厚な豚骨スープに葉野菜とジャガイモを合わせた、食べ応えのある鍋です。", "浓郁猪骨汤里煮着蔬菜和土豆，暖胃又顶饱。"),
+    "jjolmyeon": locale("쫄깃한 면에 새콤매콤한 양념을 비벼 시원하게 먹어요.", "Chewy noodles are tossed in a cool, tangy, and spicy sauce.", "弾力のある麺に甘酸っぱく辛いたれを絡めて、さっぱり食べます。", "劲道面条拌上酸甜微辣的酱汁，清爽开胃。"),
+    "jjajang-ramyeon": locale("고소한 짜장 소스가 면에 착 감기는 간편한 한 그릇이에요.", "A rich black bean sauce clings to the noodles in this quick, savory bowl.", "コクのあるジャージャーソースが麺によく絡む、手軽な一品です。", "浓香炸酱裹住每根面条，简单一碗就很满足。"),
+    "bibim-myeon": locale("차갑게 비빈 면과 새콤달콤한 소스가 입맛을 깨워요.", "Chilled noodles in a sweet-and-tangy sauce make a refreshing spicy bite.", "冷たい麺に甘酸っぱいたれを絡めた、さっぱりした辛口メニューです。", "冰凉面条拌上酸甜酱汁，清爽又带点辣味。"),
+    "gomtang": locale("오래 우린 맑고 담백한 소고기 국물로 속을 따뜻하게 채워요.", "A clear, gently savory beef broth makes a warming, simple meal.", "牛肉をじっくり煮込んだ、澄んだ優しい味わいのスープです。", "牛肉长时间熬出的清鲜汤底，喝起来温暖又舒服。"),
+    "chicken-skewer": locale("불향 입힌 닭고기에 달콤짭짤한 소스를 발라 구운 꼬치예요.", "Grilled chicken skewers are brushed with a sweet, savory glaze.", "香ばしく焼いた鶏肉に、甘辛いたれを塗った串焼きです。", "鸡肉串烤出焦香，再刷上咸甜酱汁。"),
+    "fish-cake-skewer": locale("따끈한 국물에 어묵 꼬치를 담가 한 장씩 즐겨요.", "Fish cakes on skewers soak up warm broth and are easy to enjoy one by one.", "温かいだしに浸した練り物を、串から一つずつ味わいます。", "鱼饼串浸在热汤里，拿起一串慢慢吃很惬意。"),
+    "hotteok": locale("따뜻한 반죽 안에 녹은 흑설탕 시럽과 견과류가 들어 있어요.", "Warm dough gives way to melted brown sugar syrup and crunchy nuts.", "温かい生地の中に、とろけた黒糖シロップとナッツが入っています。", "热乎面饼里包着融化的红糖和坚果，香甜软糯。"),
+    "bungeoppang": locale("바삭한 틀 안에 따끈한 팥소가 들어 있는 겨울 간식이에요.", "This crisp fish-shaped pastry hides a warm, sweet red bean filling.", "魚の形に焼いた香ばしい生地に、温かいあんこが入った冬のおやつです。", "鱼形外皮烤得香脆，里面是热乎乎的红豆馅，是经典冬日点心。"),
+    "twisted-donut": locale("설탕을 묻힌 폭신쫄깃한 꽈배기를 커피와 곁들여요.", "A fluffy, chewy twisted doughnut is finished with a dusting of sugar.", "ふんわりもちっとした揚げ菓子に砂糖をまぶした、素朴なおやつです。", "蓬松有嚼劲的麻花裹上细砂糖，配咖啡正好。"),
+    "korean-pizza": locale("바삭한 도우 위에 녹은 치즈와 토핑을 얹어 나눠 먹기 좋아요.", "Melted cheese and favorite toppings on crisp dough make an easy shareable meal.", "カリッとした生地にチーズと具材をのせた、みんなで分けやすい一品です。", "酥脆饼底铺上融化芝士和配料，适合切块分享。"),
+    "cheese-balls": locale("바삭한 겉을 깨물면 안에서 따뜻한 치즈가 늘어나요.", "Bite through a crisp shell to find warm, stretchy cheese inside.", "カリッとした衣の中から、温かいチーズがとろりと伸びます。", "咬开酥脆外壳，里面的热芝士柔软拉丝。"),
+    "sweet-potato-fries": locale("고구마의 자연스러운 단맛과 바삭한 가장자리가 잘 어울려요.", "Naturally sweet potato with crisp edges makes a simple, satisfying snack.", "さつまいもの自然な甘みと、カリッとした端の食感が楽しめます。", "红薯自带的香甜配上酥脆边缘，简单又好吃。"),
+    "fruit-cup": locale("차갑고 산뜻한 여러 과일을 한 컵에 담아 가볍게 먹어요.", "A chilled mix of fresh fruit is a light, refreshing late-night choice.", "冷やしたいろいろな果物をカップに詰めた、さっぱりした一品です。", "一杯装着多种冰凉鲜果，清爽解腻又轻盈。"),
+    "ice-cream": locale("차갑고 부드러운 한 스쿱으로 달콤하게 입가심해요.", "A cool, creamy scoop is an easy way to finish on something sweet.", "冷たくなめらかな一口で、甘く締めくくれます。", "来一勺冰凉绵密的冰淇淋，甜甜地结束夜宵。"),
+    "hamburger": locale("패티와 채소, 소스를 번 사이에 담아 한입 가득 즐겨요.", "A juicy patty, crisp vegetables, and sauce are stacked between soft buns.", "ジューシーなパティと野菜、ソースをバンズで挟んだ定番です。", "多汁肉饼、爽脆蔬菜和酱汁夹在面包中，一口满足。"),
+    "french-fries": locale("겉은 바삭하고 속은 포슬한 감자를 소스에 찍어 먹어요.", "Crisp outside and fluffy inside, fries are even better with a favorite dip.", "外はカリッと中はほくほくのポテトを、好みのソースにつけてどうぞ。", "薯条外脆内松软，蘸上喜欢的酱料更过瘾。"),
+    "nachos": locale("바삭한 옥수수칩에 치즈 소스와 살사를 얹어 나눠 먹어요.", "Crunchy corn chips topped with cheese sauce and salsa are made for sharing.", "パリパリのチップスにチーズソースやサルサを添えて楽しみます。", "酥脆玉米片配芝士酱和莎莎酱，适合边聊边分享。"),
+    "cream-pasta": locale("부드러운 크림 소스가 면에 감기는 고소한 파스타예요.", "Silky cream sauce coats the pasta for a rich, comforting bowl.", "なめらかなクリームソースが麺に絡む、コクのあるパスタです。", "顺滑奶油酱汁裹住面条，浓郁醇香又暖心。"),
+    "grilled-eel": locale("윤기 나는 양념을 발라 구운 장어를 따뜻한 밥과 곁들여요.", "Glazed grilled eel pairs beautifully with a bowl of warm rice.", "照りのあるたれで焼いたうなぎを、温かいご飯と一緒に味わいます。", "烤鳗鱼刷上亮泽酱汁，配一碗热米饭很合适。"),
+    "egg-toast": locale("달걀과 채소, 달콤짭짤한 소스를 식빵 사이에 넣은 길거리 간식이에요.", "Egg, vegetables, and sweet-savory sauce are tucked between slices of toast.", "卵や野菜、甘じょっぱいソースをパンで挟んだ韓国の屋台トーストです。", "吐司夹着鸡蛋、蔬菜和咸甜酱汁，是韩式街头小吃。"),
+    "tuna-rice-ball": locale("참치마요 속을 밥으로 감싸 한 손에 들고 먹기 좋아요.", "A creamy tuna-mayo filling is wrapped in rice for an easy handheld bite.", "ツナマヨの具をご飯で包んだ、片手で食べやすいおにぎりです。", "米饭包住香浓的金枪鱼蛋黄酱馅，拿着吃很方便。"),
+    "fried-seaweed-roll": locale("당면을 넣은 김말이에 튀김옷을 입혀 바삭하게 튀겼어요.", "Glass noodles wrapped in seaweed are battered and fried until crisp.", "春雨を海苔で巻き、衣をつけてカリッと揚げています。", "粉丝卷进紫菜后裹上面衣炸脆，蘸辣炒年糕酱汁也很搭。"),
+    "spicy-pork": locale("돼지고기와 채소에 매콤한 양념이 배어 밥과 잘 어울려요.", "Pork and vegetables soak up a spicy sauce that pairs well with rice.", "豚肉と野菜に辛いたれが染み込み、ご飯が進む味わいです。", "猪肉和蔬菜裹满香辣酱汁，是很下饭的一道菜。"),
+    "cup-ramyeon": locale("뜨거운 물만 부으면 꼬들한 면과 얼큰한 국물을 간편히 즐겨요.", "Just add hot water for springy noodles and savory broth in minutes.", "お湯を注ぐだけで、歯ごたえのある麺とスープを手軽に楽しめます。", "只需加入热水，几分钟就能吃到劲道面条和鲜香汤底。")
+  };
+  const lateNightFood = foodNames.map(([id, ko, en, ja, zh]) => ({
+    id,
+    name: locale(ko, en, ja, zh),
+    detail: foodDetails[id],
+    image: image("late-night-food", id)
+  }));
+
+  window.MOLGGA_WORLDCUPS = {
+    weekend: {
+      id: "weekend", page: "worldcup.html", title: locale("주말 취향 월드컵", "Weekend Preference World Cup", "週末の好みワールドカップ", "周末偏好世界杯"),
+      availableBrackets: [8], items: weekendNames
+    },
+    "late-night-food": {
+      id: "late-night-food", page: "late-night-worldcup.html", title: locale("야식 이상형 월드컵", "Late-Night Food World Cup", "夜食ワールドカップ", "深夜美食世界杯"),
+      availableBrackets: [16, 32], items: lateNightFood
+    }
+  };
+})();

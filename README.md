@@ -17,6 +17,7 @@
 - `assets/css/`: 공통 스타일시트
 - `assets/js/`: 공통 동작, 번역 사전, 퀴즈 데이터
 - `image/`: 로고, OG 이미지, 테스트 결과 이미지
+- `functions/`, `migrations/`: Cloudflare Pages 월드컵 랭킹 API와 D1 스키마
 - `_redirects`: 루트 및 기존 주소를 한국어 경로로 연결
 - `robots.txt`, `sitemap.xml`, `ads.txt`: 검색·광고 크롤러 파일
 
@@ -29,6 +30,18 @@
 Cloudflare Pages가 저장소 루트를 정적 사이트로 제공합니다. `main` 브랜치에 푸시하면 연결된 Pages 프로젝트가 자동 배포됩니다.
 
 기존 루트 주소(`/worldcup.html` 등)는 `_redirects`를 통해 `/ko/worldcup.html`로 이동합니다.
+
+## 월드컵 인기 랭킹 설정
+
+월드컵은 공통 엔진(`assets/js/worldcup.js`)과 데이터 목록(`assets/js/worldcup-data.js`)을 사용합니다. 야식 월드컵은 50개 메뉴 중 16개 또는 32개를 무작위로 뽑습니다. 새 월드컵을 추가할 때는 데이터 목록에 게임 ID와 선택지를 추가하고, 익명 랭킹 API 허용 목록(`functions/_shared/worldcup-config.js`)에도 게임 ID와 항목 ID를 등록합니다.
+
+전체 방문자의 우승 메뉴 랭킹은 Cloudflare D1 데이터베이스 `molgga-worldcup-rankings`를 사용합니다. Pages 프로젝트 `moa`의 **Production → Settings → Bindings**에 `MOLGGA_DB`라는 이름으로 연결했고, `migrations/0001_worldcup_votes.sql` 스키마를 적용했습니다. 이 바인딩은 Pages Functions가 데이터베이스에 접근하도록 하며 다음 배포부터 적용됩니다.
+
+```powershell
+npx wrangler d1 execute molgga-worldcup --remote --file=migrations/0001_worldcup_votes.sql
+```
+
+데이터베이스가 연결되기 전에는 랭킹이 현재 탭에서 완주한 결과만 보여줍니다. 연결 후에는 완주 시 최종 우승 항목·대진 규모·일회성 임의 ID만 저장하며 선택 과정은 전송하지 않습니다.
 
 ## 카카오톡 공유 설정
 
