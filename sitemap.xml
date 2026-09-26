@@ -1,14 +1,355 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://molgga.com/</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://molgga.com/worldcup.html</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://molgga.com/animal-test.html</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://molgga.com/mbti.html</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://molgga.com/teto-egen-test.html</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://molgga.com/attachment-test.html</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://molgga.com/past-life-test.html</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://molgga.com/about.html</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://molgga.com/privacy.html</loc><lastmod>2026-09-25</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://molgga.com/terms.html</loc><lastmod>2026-09-25</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://molgga.com/contact.html</loc><lastmod>2026-09-25</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://molgga.com/ko/</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ko/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/about.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/about.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/about.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/about.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/about.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/about.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/about.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/about.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/about.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/about.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/about.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/about.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/about.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/about.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/about.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/about.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ko/animal-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/animal-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/animal-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/animal-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/animal-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/animal-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/animal-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/animal-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/animal-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ko/attachment-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/attachment-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/attachment-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/attachment-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/attachment-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/attachment-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/attachment-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/attachment-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/attachment-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ko/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/contact.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/contact.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/contact.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/contact.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/contact.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/contact.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/contact.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/contact.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/contact.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/contact.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/contact.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/contact.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/contact.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/contact.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/contact.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/contact.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/contact.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/contact.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/contact.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/contact.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ko/mbti.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/mbti.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/mbti.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/mbti.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/mbti.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/mbti.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/mbti.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/mbti.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/mbti.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ko/past-life-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/past-life-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/past-life-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/past-life-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/past-life-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/past-life-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/past-life-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/past-life-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/past-life-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ko/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/privacy.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/privacy.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/privacy.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/privacy.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ko/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/terms.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/terms.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/terms.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/terms.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/terms.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/terms.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/terms.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/terms.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/terms.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/terms.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/terms.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/terms.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/terms.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/terms.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/terms.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/terms.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/terms.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/terms.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/terms.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/terms.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ko/teto-egen-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/teto-egen-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/teto-egen-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/teto-egen-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/teto-egen-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/teto-egen-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/teto-egen-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/teto-egen-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/teto-egen-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ko/worldcup.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/worldcup.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/worldcup.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/worldcup.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/worldcup.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/worldcup.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/worldcup.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/worldcup.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/worldcup.html" />
+  </url>
 </urlset>

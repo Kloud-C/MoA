@@ -1,0 +1,17 @@
+/ /ko/ 302
+/index.html /ko/ 301
+/about.html /ko/about.html 301
+/animal-test.html /ko/animal-test.html 301
+/attachment-test.html /ko/attachment-test.html 301
+/contact.html /ko/contact.html 301
+/mbti.html /ko/mbti.html 301
+/past-life-test.html /ko/past-life-test.html 301
+/privacy.html /ko/privacy.html 301
+/terms.html /ko/terms.html 301
+/teto-egen-test.html /ko/teto-egen-test.html 301
+/worldcup.html /ko/worldcup.html 301
+
+/Kr /ko/ 301
+/Kr/* /ko/:splat 301
+/kr /ko/ 301
+/kr/* /ko/:splat 301
