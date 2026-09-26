@@ -352,4 +352,36 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/worldcup.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/worldcup.html" />
   </url>
+  <url>
+    <loc>https://molgga.com/ko/spending-habits-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/spending-habits-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/en/spending-habits-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/spending-habits-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/ja/spending-habits-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/spending-habits-test.html" />
+  </url>
+  <url>
+    <loc>https://molgga.com/zh/spending-habits-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://molgga.com/ko/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://molgga.com/en/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://molgga.com/ja/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://molgga.com/zh/spending-habits-test.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://molgga.com/ko/spending-habits-test.html" />
+  </url>
 </urlset>

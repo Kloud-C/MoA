@@ -430,6 +430,7 @@ progress::-moz-progress-bar { border-radius: 999px; background: var(--mint-600);
 .home-faq { display: grid; gap: 20px; }
 .home-faq__item + .home-faq__item { padding-top: 20px; border-top: 1px solid var(--line); }
 .home-faq__item a { color: var(--mint-700); text-decoration: underline; text-underline-offset: 3px; }
+.archetype-quiz[data-archetype-test="spending-habits"] .archetype-result-card__image { width: min(100%, 360px); height: auto; aspect-ratio: 1; padding: 0; object-fit: cover; }
 
 @media (max-width: 600px) {
   .more-panel.wrap { gap: 16px; margin-bottom: 26px; padding: 18px; border-radius: 16px; }
