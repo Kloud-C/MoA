@@ -65,13 +65,17 @@
       status.textContent = translate("카카오 JavaScript 키를 설정한 뒤 사용할 수 있어요.");
       return;
     }
-    if (!window.Kakao?.Share || typeof window.Kakao.init !== "function") {
+    if (!window.Kakao || typeof window.Kakao.init !== "function") {
       status.textContent = translate("카카오톡 공유를 준비하지 못했어요. 설정을 확인해 주세요.");
       return;
     }
     try {
       if (!window.Kakao.isInitialized()) window.Kakao.init(key);
-      window.Kakao.Share.sendDefault({
+      const kakaoShare = window.Kakao.Share;
+      if (!kakaoShare || typeof kakaoShare.sendDefault !== "function") {
+        throw new Error("Kakao Share module is unavailable after SDK initialization.");
+      }
+      kakaoShare.sendDefault({
         objectType: "feed",
         content: {
           title: current.title,
