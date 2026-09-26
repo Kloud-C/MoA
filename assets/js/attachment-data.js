@@ -70,7 +70,7 @@ window.MOA_ARCHETYPE_TESTS["attachment-style"] = {
     ] }
   ],
   profiles: {
-    secure: {
+    secure: { image: "../image/tests/attachment-style/secure.jpg",
       name: "안정형 · 편안한 연결자", emoji: "🤝", color: "#318d69",
       catchphrase: "가까움도 나다움도 함께 지켜요.",
       description: "마음을 나누면서도 서로의 차이와 시간을 존중하는 편이에요. 서운함이 생기면 대화로 풀어가고, 필요할 때 도움을 주고받으려 해요.",
@@ -80,7 +80,7 @@ window.MOA_ARCHETYPE_TESTS["attachment-style"] = {
         { title: "잘 맞는 대화 🗣️", text: "서로의 마음과 바라는 점을 솔직하게 나누는 대화에서 편안함을 느껴요." }
       ]
     },
-    avoidant: {
+    avoidant: { image: "../image/tests/attachment-style/avoidant.jpg",
       name: "회피형 · 나만의 페이스", emoji: "🐢", color: "#397b96",
       catchphrase: "혼자 정리할 시간이 있어야 마음도 편해요.",
       description: "감정이 복잡할 때 혼자 생각을 정리하고 자기 리듬을 지키려는 편이에요. 가까운 관계에서도 독립성과 개인 공간이 중요할 수 있어요.",
@@ -90,7 +90,7 @@ window.MOA_ARCHETYPE_TESTS["attachment-style"] = {
         { title: "잘 맞는 대화 🗣️", text: "생각을 정리할 시간을 서로 인정하고, 준비가 되었을 때 구체적으로 이야기하는 방식이 편해요." }
       ]
     },
-    anxious: {
+    anxious: { image: "../image/tests/attachment-style/anxious.jpg",
       name: "불안형 · 마음 확인 레이더", emoji: "💌", color: "#b86b82",
       catchphrase: "소중한 관계일수록 마음을 자주 확인하고 싶어요.",
       description: "관계를 중요하게 여겨 상대의 반응과 분위기 변화에 민감할 수 있어요. 확신이 줄어들면 마음을 확인하고 안심을 얻고 싶어지는 편이에요.",
@@ -100,7 +100,7 @@ window.MOA_ARCHETYPE_TESTS["attachment-style"] = {
         { title: "잘 맞는 대화 🗣️", text: "연락이나 약속에서 서로 기대하는 바를 미리 맞추고, 안심이 필요한 순간을 부드럽게 나누는 대화가 도움이 돼요." }
       ]
     },
-    fearful: {
+    fearful: { image: "../image/tests/attachment-style/fearful.jpg",
       name: "혼란형 · 가까움과 조심 사이", emoji: "🌗", color: "#7864a8",
       catchphrase: "다가가고 싶은 마음과 지키고 싶은 마음이 함께해요.",
       description: "친밀해지고 싶은 마음과 상처를 피하고 싶은 마음이 함께 들 수 있어요. 상대를 믿고 싶으면서도 마음을 여는 순간에는 신중해지는 편이에요.",

@@ -116,7 +116,7 @@ window.MOA_ARCHETYPE_TESTS["past-life"] = {
       { text: "모두가 제시간에 움직이게 돕는 장치", scores: ["ant", "scribe"] },
       { text: "심심할 틈 없게 장난을 치는 장치", scores: ["goblin", "bard"] }
     ] },
-    { prompt: "마지막 질문! 전설 속 내 별명으로 더 끌리는 것은?", choices: [
+    { prompt: "전설 속 내 별명으로 더 끌리는 것은?", choices: [
       { text: "어디든 나타나는 행운의 여행자", scores: ["dandelion", "rabbit"] },
       { text: "아무 일도 안 해도 존재감이 큰 바위", scores: ["rock", "cloud"] }
     ] },

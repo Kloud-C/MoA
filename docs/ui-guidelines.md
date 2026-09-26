@@ -11,6 +11,41 @@ This document is the shared implementation template for new and updated pages. K
 - Build the Korean structure first, then keep the same component order and class names in `en/`, `ja/`, and `zh/`. Add each page to the sitemap and the relevant navigation/content list when appropriate.
 - Prefer these existing templates over copying markup from a screenshot or introducing page-specific inline CSS.
 
+## Quiz content template
+
+Keep the same reading order across quiz pages while allowing the subject matter and result details to stay distinct:
+
+1. **Intro:** a short category eyebrow, one inviting title, and a two-sentence maximum hook that helps the visitor picture the experience.
+2. **Question area:** one question at a time, a visible `N / total` progress count, a plain question prompt, and consistently styled answer cards.
+3. **Result:** result label, image (when the quiz has a result image set), name, short catchphrase, concise explanation, and any quiz-specific detail cards. Use the shared `archetype-test.js` renderer for archetype quizzes.
+4. **Actions:** restart and share controls in the same order and with the shared button styles.
+
+The template defines hierarchy and behavior, not identical wording or identical result content. Keep each result description specific to its type. Prefer a short opening summary followed by a few useful, distinct details; avoid repeating the same generic paragraph across every result.
+
+### Promotional copy
+
+- Lead with a relatable question, choice, or feeling that makes someone curious to try the content. Examples: “이상형 월드컵: 오늘 땡기는 야식은?” or “연애할 때, 사람들과 소통할 때. 나는 어떤 유형일까?”
+- Keep question counts, menu counts, round counts, and estimated duration out of page titles and promotional introductions. The UI already shows progress and round choices where that information helps someone play.
+- Explain the experience in plain language rather than listing internal data: tell the visitor what they can choose or discover, then let the interaction reveal the result.
+- Keep factual counts in reference/about material when they help describe what the site contains; do not repeat them in every teaser, card, and page header.
+- Keep the category eyebrow short (for example, `molgga PLAY · 야식 월드컵`). Do not use it as a second metadata row.
+
+### Question wording and progress
+
+- Store only the question sentence in each quiz data file. Do not hard-code question numbers, “last question” labels, or progress status into the prompt.
+- The shared archetype renderer adds the live question number from the current index. Its number must always match the visible `N / total` progress value; the final-question state must be derived from the actual final index, never from a fixed question number.
+- Keep prompts direct and conversational. Use one question per prompt, and avoid “마지막 질문!” unless the renderer derives that label at the true end (the default is to omit it).
+- When a quiz's question count changes, check the live progress denominator and any explicit duration or counts in the explanatory content where they are genuinely useful.
+- Translate changed source prompts and labels in all supported languages (`ko`, `en`, `ja`, `zh`); do not let missing translation keys fall back to Korean on localized pages.
+
+### Result-image template
+
+- Store generated quiz result images under `image/tests/<quiz-id>/` and use stable, descriptive filenames based on result IDs, such as `avoidant.jpg`.
+- Connect each result profile to its local asset with the `image` field in its data file. Keep the shared image/emoji fallback behavior so a missing image does not leave a broken image icon.
+- Use image descriptions that reflect the result without turning a personality label into a diagnosis or stereotype. Images contain no embedded text or logos.
+- Keep a consistent photographic quality within one result family, while varying people, setting, framing, and lighting so the set does not look like one repeated scene.
+- Document each new image folder and its filename-to-result mapping in `image/README.md`.
+
 ## Page structure
 
 - Use the shared header, centered `.wrap`, `.page-main`, `.article`, breadcrumb, `.article-header`, content panels, and footer used by the localized pages.
@@ -55,3 +90,5 @@ This document is the shared implementation template for new and updated pages. K
 4. Check form labels, radio/checkbox alignment, tap target size, and error-state spacing.
 5. Check translated pages use the same component structure and fit their longer/shorter labels.
 6. Check cache tokens for changed CSS/JS and inspect `git diff --check` before commit.
+7. For quizzes, compare at least an early, middle, and final question: question number must match progress, and no prompt may claim to be final early.
+8. For result families, confirm every configured image path exists and that missing images still have the intended fallback.

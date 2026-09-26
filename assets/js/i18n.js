@@ -78,6 +78,16 @@
   const pageTranslations = {
     en: {
       "홈": "Home", "주요 메뉴": "Main menu", "현재 위치": "You are here", "정책 메뉴": "Policy links", "© 2026 molgga": "© 2026 molgga",
+      "나의 취향을 찾아봐요": "Find out what I like", "몰까(molgga)는 다양한 테스트를 무료로 즐길 수 있는 곳이에요. 여러 테스트를 해보며 나도 몰랐던 취향을 발견해 보세요.": "molgga is a place to enjoy all kinds of quizzes for free. Try a few and discover preferences you may not have noticed before.",
+      "다양한 주말 활동을 비교해 가장 끌리는 활동을 골라보세요.": "Compare different weekend activities and pick the one that appeals to you most.", "이상형 월드컵: 오늘 땡기는 야식은?": "Late-night Food Matchup: What Are You Craving?", "다양한 야식 메뉴에서 가장 끌리는 음식을 골라보세요.": "Choose the late-night food that sounds best to you.",
+      "질문에 답하고 나와 어울리는 동물 캐릭터를 찾아보세요.": "Answer a few questions to find the animal character that suits you.", "질문에 답해 나의 MBTI를 알아보세요.": "Answer a few questions to explore your MBTI preferences.", "질문에 답하고 나의 테토/에겐 스타일을 알아보세요.": "Answer a few questions to explore your Teto/Egen style.", "연애나 인간관계에서 나는 어떤 유형인지 알아보세요.": "Find out how you tend to connect in dating and other relationships.", "나는 전생에 어떤 모습이었을까요?": "What might I have been in a past life?", "왜 내 지갑엔 돈이 없지?": "Where Did All My Money Go?", "질문에 답하고 나의 소비 스타일을 알아보세요.": "Answer a few questions to explore your spending style.", "가볍게 즐기는 다양한 테스트": "A variety of quizzes to enjoy", "몰까는 재미있고 다양한 콘텐츠를 무료로 즐길 수 있는 공간입니다. 결과는 가볍게 즐기고, 킬링타임으로 활용해 보세요.": "molgga is a place to enjoy a variety of fun content for free. Take the results lightly and enjoy them in your downtime.",
+      "몰까는 간단한 취향을 알아보거나 테스트를 한 곳에서 즐길 수 있도록 만든 사이트입니다. 가볍게 즐기며 나의 결과를 친구들과 공유해 보세요.": "molgga brings different quizzes and ways to explore your preferences together in one place. Have fun and share your results with friends.",
+      "현재 몰까에는 주말 취향 월드컵, 50가지 야식 메뉴 중 무작위로 뽑은 메뉴로 진행하는 16강·32강 월드컵, 10문항 동물상 테스트(6종 결과), 20문항 MBTI 콘텐츠, 12문항 테토/에겐 테스트(8종 결과), 16문항 애착 유형 테스트(4종 결과), 30문항 전생 테스트(20종 결과)가 있습니다. 애착 유형 콘텐츠는 연구 자료를 참고하며, 각 콘텐츠의 질문과 설명은 몰까가 직접 작성합니다. 외부 테스트 문항이나 다른 사이트의 결과를 그대로 복제해 제공하지 않습니다.": "molgga currently offers a weekend preference matchup; a 16- or 32-entry late-night food matchup randomly drawn from 50 dishes; a 10-question animal-style quiz with six possible results; a 20-question MBTI quiz; a 12-question Teto/Egen quiz with eight results; a 16-question attachment-style quiz with four results; and a 30-question past-life quiz with 20 results. The attachment-style content draws on research, and molgga writes the questions and explanations for each activity. We do not copy questions from external tests or reproduce another site's results.",
+      "사이트는 웹 기반으로 운영합니다. 계정 가입이나 유료 결제 없이 모든 콘텐츠를 무료로 이용할 수 있습니다. 이용 방식은 바뀔 수 있으므로 새 기능을 추가하면 안내와 개인정보처리방침도 함께 업데이트합니다.": "The site runs on the web, and all content is free to use without an account or payment. If the way the site works changes, we will update this guide and the Privacy Policy when we add new features.",
+      "1. 콘텐츠의 성격과 참고 범위를 투명하게 밝힙니다": "1. We explain what each activity is and what its results mean", "각 콘텐츠의 진행 방법과 결과를 설명하고, 검사나 진단으로 오해되지 않도록 관련 출처를 함께 안내합니다.": "We explain how each activity works and what its results mean, and include relevant sources so it is not mistaken for a formal test or diagnosis.",
+      "2. 테스트 결과로 사람의 성격을 단정 짓지 않습니다": "2. We do not define a person by a quiz result", "선택지에 불편함을 줄 수 있는 문구를 포함하지 않습니다. 가벼운 오락성 문항으로 사람의 능력, 건강, 가치, 미래를 판단하지 않습니다.": "We avoid wording in answer choices that could make people uncomfortable. Lighthearted questions cannot determine someone's abilities, health, values, or future.",
+      "3. 출처와 제한 사항을 기재합니다": "3. We provide sources and note limitations", "외부 자료의 정보를 소개할 때 출처를 표시하고, 자체 작성한 내용과 공식 자료를 구분합니다. 정보가 바뀌거나 오류가 발견되면 확인 후 수정합니다.": "We cite external information and distinguish our own writing from official sources. If information changes or we find an error, we check it and make a correction.",
+      "사이트 오류, 이해하기 어려운 안내, 접근성 문제, 새로운 콘텐츠 제안 등 다양한 의견을 보내주세요. 상황을 자세히 적어 주시면 확인하고 수정하는 데 도움이 됩니다.": "Send us your feedback, whether you spotted a site error, unclear instructions, an accessibility issue, or have an idea for new content. A few details about what happened will help us look into it and make a fix.",
       "이상형 월드컵: 내가 원하는 주말": "Weekend Matchup: My Ideal Weekend", "8가지 주말 활동을 한 쌍씩 비교해 오늘 가장 끌리는 선택을 찾아요.": "Compare eight weekend activities and find the one you want most today.",
       "10가지 생활 속 질문으로 나의 동물 캐릭터를 찾아봐요.": "Find your animal character through 10 everyday questions.",
       "총 20개 질문으로 나의 MBTI를 알아봅니다.(공식 MBTI 검사는 아닙니다.)": "Explore your MBTI preferences with 20 questions. This is not an official MBTI assessment.",
@@ -85,7 +95,7 @@
       "16문항으로 연애와 인간관계에서 마음을 나누는 방식을 살펴봐요.": "Explore how you connect in romantic relationships and friendships through 16 questions.",
       "30문항으로 전생의 캐릭터를 만나보세요.": "Answer 30 questions to meet your past-life character.",
       "무료 성격 테스트와 취향 테스트를 몰까에서 만나보세요.": "Explore free personality and preference quizzes on molgga.", "문의 내용을 작성해 주세요.": "Send us a message.",
-      "몰까에 의견을 보내주세요": "Send feedback to molgga", "문항의 오류, 이해하기 어려운 안내, 접근성 문제, 새 콘텐츠 제안 등을 환영합니다.": "We welcome reports about quiz errors, unclear instructions, accessibility issues, and ideas for new content.",
+      "몰까에 의견을 보내주세요": "Send feedback to molgga",
       "몰까는 어떤 곳인가요?": "What is molgga?", "몰까는 짧은 취향 놀이와 설명이 있는 자기 성찰 콘텐츠를 한 곳에서 즐길 수 있도록 만드는 작은 웹사이트입니다. 결과를 과장하기보다, 어떻게 만들어졌고 어디까지 참고할 수 있는지 함께 설명합니다.": "molgga is a small website for quick preference games and guided self-reflection. We explain how results are made and what they can—and cannot—tell you.",
       "무엇을 제공하나요?": "What does molgga offer?", "콘텐츠를 만드는 기준": "How we create content", "결과를 어떻게 해석해야 하나요?": "How should I read the results?", "누가 운영하나요?": "Who runs molgga?",
       "결과 안내": "About the results", "참고": "Notes", "개인정보 처리 방식은": "For details on data handling, see", "자세한 내용은": "For details, see",
@@ -104,6 +114,16 @@
     },
     ja: {
       "홈": "ホーム", "주요 메뉴": "メインメニュー", "현재 위치": "現在地", "정책 메뉴": "ポリシー", "© 2026 molgga": "© 2026 molgga",
+      "나의 취향을 찾아봐요": "自分の好みを見つけよう", "몰까(molgga)는 다양한 테스트를 무료로 즐길 수 있는 곳이에요. 여러 테스트를 해보며 나도 몰랐던 취향을 발견해 보세요.": "molggaでは、さまざまなテストを無料で楽しめます。いろいろ試しながら、自分でも気づいていなかった好みを見つけてみましょう。",
+      "다양한 주말 활동을 비교해 가장 끌리는 활동을 골라보세요.": "さまざまな週末の過ごし方を比べて、いちばん惹かれるものを選びましょう。", "이상형 월드컵: 오늘 땡기는 야식은?": "夜食マッチ：今夜食べたいのはどれ？", "다양한 야식 메뉴에서 가장 끌리는 음식을 골라보세요.": "夜食メニューから、いちばん食べたいものを選びましょう。",
+      "질문에 답하고 나와 어울리는 동물 캐릭터를 찾아보세요.": "質問に答えて、自分に合う動物キャラクターを見つけましょう。", "질문에 답해 나의 MBTI를 알아보세요.": "質問に答えて、自分のMBTIの傾向を見てみましょう。", "질문에 답하고 나의 테토/에겐 스타일을 알아보세요.": "質問に答えて、自分のテト／エゲンのスタイルを見てみましょう。", "연애나 인간관계에서 나는 어떤 유형인지 알아보세요.": "恋愛や人間関係での自分のタイプを見てみましょう。", "나는 전생에 어떤 모습이었을까요?": "前世ではどんな姿だったのでしょう？", "왜 내 지갑엔 돈이 없지?": "どうしてお財布にお金がないの？", "질문에 답하고 나의 소비 스타일을 알아보세요.": "質問に答えて、自分のお金の使い方を見てみましょう。", "가볍게 즐기는 다양한 테스트": "気軽に楽しめるいろいろなテスト", "몰까는 재미있고 다양한 콘텐츠를 무료로 즐길 수 있는 공간입니다. 결과는 가볍게 즐기고, 킬링타임으로 활용해 보세요.": "molggaは楽しいコンテンツを無料で楽しめるサイトです。結果は気軽に楽しみ、ちょっとした暇つぶしにどうぞ。",
+      "몰까는 간단한 취향을 알아보거나 테스트를 한 곳에서 즐길 수 있도록 만든 사이트입니다. 가볍게 즐기며 나의 결과를 친구들과 공유해 보세요.": "molggaは、好みを知るための簡単なコンテンツやさまざまなテストを一か所で楽しめるサイトです。気軽に楽しんで、結果を友達とシェアしてください。",
+      "현재 몰까에는 주말 취향 월드컵, 50가지 야식 메뉴 중 무작위로 뽑은 메뉴로 진행하는 16강·32강 월드컵, 10문항 동물상 테스트(6종 결과), 20문항 MBTI 콘텐츠, 12문항 테토/에겐 테스트(8종 결과), 16문항 애착 유형 테스트(4종 결과), 30문항 전생 테스트(20종 결과)가 있습니다. 애착 유형 콘텐츠는 연구 자료를 참고하며, 각 콘텐츠의 질문과 설명은 몰까가 직접 작성합니다. 외부 테스트 문항이나 다른 사이트의 결과를 그대로 복제해 제공하지 않습니다.": "現在molggaでは、週末の好みマッチ、50種類の夜食からランダムに選ぶ16・32候補のマッチ、10問・6種類の結果がある動物タイプ診断、20問のMBTIコンテンツ、12問・8種類の結果があるテト／エゲン診断、16問・4種類の結果がある愛着スタイル診断、30問・20種類の結果がある前世診断を楽しめます。愛着スタイルの内容は研究資料を参考にし、各コンテンツの質問と説明はmolggaが作成しています。他のテストの設問やサイトの結果をそのまま転載していません。",
+      "사이트는 웹 기반으로 운영합니다. 계정 가입이나 유료 결제 없이 모든 콘텐츠를 무료로 이용할 수 있습니다. 이용 방식은 바뀔 수 있으므로 새 기능을 추가하면 안내와 개인정보처리방침도 함께 업데이트합니다.": "サイトはウェブ上で運営しており、アカウント登録や支払いなしですべてのコンテンツを無料で利用できます。新機能の追加など利用方法が変わる場合は、案内とプライバシーポリシーも更新します。",
+      "1. 콘텐츠의 성격과 참고 범위를 투명하게 밝힙니다": "1. コンテンツの内容と参考範囲を明確にします", "각 콘텐츠의 진행 방법과 결과를 설명하고, 검사나 진단으로 오해되지 않도록 관련 출처를 함께 안내합니다.": "各コンテンツの進め方と結果を説明し、正式な検査や診断と誤解されないよう関連する出典も案内します。",
+      "2. 테스트 결과로 사람의 성격을 단정 짓지 않습니다": "2. テスト結果だけで人の性格を決めつけません", "선택지에 불편함을 줄 수 있는 문구를 포함하지 않습니다. 가벼운 오락성 문항으로 사람의 능력, 건강, 가치, 미래를 판단하지 않습니다.": "選択肢には不快に感じる可能性のある表現を含めません。気軽な娯楽の質問で、人の能力や健康、価値観、将来を判断することはできません。",
+      "3. 출처와 제한 사항을 기재합니다": "3. 出典と限界を記載します", "외부 자료의 정보를 소개할 때 출처를 표시하고, 자체 작성한 내용과 공식 자료를 구분합니다. 정보가 바뀌거나 오류가 발견되면 확인 후 수정합니다.": "外部資料を紹介する際は出典を示し、molgga独自の内容と公式資料を区別します。情報の変更や誤りが見つかった場合は、確認して修正します。",
+      "사이트 오류, 이해하기 어려운 안내, 접근성 문제, 새로운 콘텐츠 제안 등 다양한 의견을 보내주세요. 상황을 자세히 적어 주시면 확인하고 수정하는 데 도움이 됩니다.": "サイトの不具合、分かりにくい案内、アクセシビリティの問題、新しいコンテンツの提案など、ご意見をお寄せください。状況を詳しく書いていただくと、確認や修正に役立ちます。",
       "8가지 주말 활동을 한 쌍씩 비교해 오늘 가장 끌리는 선택을 찾아요.": "8つの週末の過ごし方を比べて、今日いちばん惹かれるものを見つけましょう。",
       "10가지 생활 속 질문으로 나의 동물 캐릭터를 찾아봐요.": "日常についての10の質問で、あなたの動物キャラクターを見つけます。",
       "총 20개 질문으로 나의 MBTI를 알아봅니다.(공식 MBTI 검사는 아닙니다.)": "20の質問でMBTIの傾向を見てみましょう。公式のMBTI検査ではありません。",
@@ -111,7 +131,6 @@
       "16문항으로 연애와 인간관계에서 마음을 나누는 방식을 살펴봐요.": "16の質問で、恋愛や人間関係での心の通わせ方を見てみましょう。",
       "30문항으로 전생의 캐릭터를 만나보세요.": "30の質問で前世のキャラクターに出会いましょう。",
       "문의 내용을 작성해 주세요.": "お問い合わせ内容をご記入ください。", "몰까에 의견을 보내주세요": "molggaにご意見をお寄せください",
-      "문항의 오류, 이해하기 어려운 안내, 접근성 문제, 새 콘텐츠 제안 등을 환영합니다.": "質問の誤り、分かりにくい案内、アクセシビリティの問題、新しいコンテンツの提案をお待ちしています。",
       "몰까는 어떤 곳인가요?": "molggaとは？", "무엇을 제공하나요?": "どんなコンテンツがありますか？", "콘텐츠를 만드는 기준": "コンテンツ制作の方針",
       "결과를 어떻게 해석해야 하나요?": "結果の見方", "누가 운영하나요?": "運営者", "결과 안내": "結果について", "참고": "ご案内",
       "답변은 현재 페이지에서 계산하고 저장하지 않습니다.": "回答はこのページ内で処理され、保存されません。", "홈으로": "ホーム", "개선 의견": "ご意見", "개인정보": "プライバシー",
@@ -124,6 +143,16 @@
     },
     zh: {
       "홈": "首页", "주요 메뉴": "主菜单", "현재 위치": "当前位置", "정책 메뉴": "政策链接", "© 2026 molgga": "© 2026 molgga",
+      "나의 취향을 찾아봐요": "来发现自己的喜好吧", "몰까(molgga)는 다양한 테스트를 무료로 즐길 수 있는 곳이에요. 여러 테스트를 해보며 나도 몰랐던 취향을 발견해 보세요.": "molgga 汇集了各种免费测试。多试几个，发现自己也未曾留意的喜好。",
+      "다양한 주말 활동을 비교해 가장 끌리는 활동을 골라보세요.": "比较不同的周末活动，选出最吸引你的那一项。", "이상형 월드컵: 오늘 땡기는 야식은?": "夜宵选择赛：今晚想吃什么？", "다양한 야식 메뉴에서 가장 끌리는 음식을 골라보세요.": "从多种夜宵中选出现在最想吃的一种。",
+      "질문에 답하고 나와 어울리는 동물 캐릭터를 찾아보세요.": "回答几个问题，找到适合你的动物角色。", "질문에 답해 나의 MBTI를 알아보세요.": "回答问题，了解自己的 MBTI 倾向。", "질문에 답하고 나의 테토/에겐 스타일을 알아보세요.": "回答问题，看看自己的 Teto/Egen 风格。", "연애나 인간관계에서 나는 어떤 유형인지 알아보세요.": "了解自己在恋爱和人际关系中的相处方式。", "나는 전생에 어떤 모습이었을까요?": "我的前世会是什么样子？", "왜 내 지갑엔 돈이 없지?": "我的钱都去哪儿了？", "질문에 답하고 나의 소비 스타일을 알아보세요.": "回答问题，了解自己的消费风格。", "가볍게 즐기는 다양한 테스트": "轻松体验各种测试", "몰까는 재미있고 다양한 콘텐츠를 무료로 즐길 수 있는 공간입니다. 결과는 가볍게 즐기고, 킬링타임으로 활용해 보세요.": "molgga 汇集了各种有趣的免费内容。轻松看看结果，也可以用来打发闲暇时间。",
+      "몰까는 간단한 취향을 알아보거나 테스트를 한 곳에서 즐길 수 있도록 만든 사이트입니다. 가볍게 즐기며 나의 결과를 친구들과 공유해 보세요.": "molgga 汇集了轻松了解喜好和体验各种测试的内容。尽情体验，也把结果分享给朋友吧。",
+      "현재 몰까에는 주말 취향 월드컵, 50가지 야식 메뉴 중 무작위로 뽑은 메뉴로 진행하는 16강·32강 월드컵, 10문항 동물상 테스트(6종 결과), 20문항 MBTI 콘텐츠, 12문항 테토/에겐 테스트(8종 결과), 16문항 애착 유형 테스트(4종 결과), 30문항 전생 테스트(20종 결과)가 있습니다. 애착 유형 콘텐츠는 연구 자료를 참고하며, 각 콘텐츠의 질문과 설명은 몰까가 직접 작성합니다. 외부 테스트 문항이나 다른 사이트의 결과를 그대로 복제해 제공하지 않습니다.": "molgga目前提供周末喜好选择赛、从50种夜宵中随机抽取菜单进行的16强或32强选择赛、10题6种结果的动物性格测试、20题MBTI内容、12题8种结果的Teto/Egen测试、16题4种结果的依恋类型测试，以及30题20种结果的前世测试。依恋类型内容参考了相关研究，各项内容的问题和说明均由molgga编写。我们不会照搬其他测试的问题或其他网站的结果。",
+      "사이트는 웹 기반으로 운영합니다. 계정 가입이나 유료 결제 없이 모든 콘텐츠를 무료로 이용할 수 있습니다. 이용 방식은 바뀔 수 있으므로 새 기능을 추가하면 안내와 개인정보처리방침도 함께 업데이트합니다.": "本网站通过网页提供服务，所有内容均可免费使用，无需注册账号或付费。服务方式如有变化，新增功能时也会同步更新相关说明和隐私政策。",
+      "1. 콘텐츠의 성격과 참고 범위를 투명하게 밝힙니다": "1. 清楚说明内容性质和参考范围", "각 콘텐츠의 진행 방법과 결과를 설명하고, 검사나 진단으로 오해되지 않도록 관련 출처를 함께 안내합니다.": "我们会说明各项内容的玩法和结果，并提供相关来源，避免被误认为正式测评或诊断。",
+      "2. 테스트 결과로 사람의 성격을 단정 짓지 않습니다": "2. 不用测试结果给一个人下定论", "선택지에 불편함을 줄 수 있는 문구를 포함하지 않습니다. 가벼운 오락성 문항으로 사람의 능력, 건강, 가치, 미래를 판단하지 않습니다.": "选项中不使用可能让人感到不适的措辞。轻松娱乐性质的问题不能判断一个人的能力、健康、价值观或未来。",
+      "3. 출처와 제한 사항을 기재합니다": "3. 标注来源和限制", "외부 자료의 정보를 소개할 때 출처를 표시하고, 자체 작성한 내용과 공식 자료를 구분합니다. 정보가 바뀌거나 오류가 발견되면 확인 후 수정합니다.": "介绍外部资料时注明来源，并区分原创内容与官方资料。信息发生变化或发现错误时，我们会核实后修正。",
+      "사이트 오류, 이해하기 어려운 안내, 접근성 문제, 새로운 콘텐츠 제안 등 다양한 의견을 보내주세요. 상황을 자세히 적어 주시면 확인하고 수정하는 데 도움이 됩니다.": "欢迎反馈网站错误、难以理解的说明、无障碍问题，或提出新内容建议。请尽量描述具体情况，以便我们核实和改进。",
       "8가지 주말 활동을 한 쌍씩 비교해 오늘 가장 끌리는 선택을 찾아요.": "比较 8 种周末活动，找出今天最想做的一项。",
       "10가지 생활 속 질문으로 나의 동물 캐릭터를 찾아봐요.": "通过 10 个日常问题，找到你的动物角色。",
       "총 20개 질문으로 나의 MBTI를 알아봅니다.(공식 MBTI 검사는 아닙니다.)": "通过 20 个问题了解你的 MBTI 倾向。本测试并非官方 MBTI 测评。",
@@ -131,7 +160,6 @@
       "16문항으로 연애와 인간관계에서 마음을 나누는 방식을 살펴봐요.": "通过 16 个问题了解你在恋爱和人际关系中的相处方式。",
       "30문항으로 전생의 캐릭터를 만나보세요.": "回答 30 个问题，遇见你的前世角色。",
       "문의 내용을 작성해 주세요.": "请填写留言内容。", "몰까에 의견을 보내주세요": "欢迎向 molgga 反馈",
-      "문항의 오류, 이해하기 어려운 안내, 접근성 문제, 새 콘텐츠 제안 등을 환영합니다.": "欢迎反馈题目错误、说明不清、无障碍问题，或提出新内容建议。",
       "몰까는 어떤 곳인가요?": "molgga 是什么？", "무엇을 제공하나요?": "这里提供什么？", "콘텐츠를 만드는 기준": "内容制作原则",
       "결과를 어떻게 해석해야 하나요?": "如何理解结果？", "누가 운영하나요?": "谁在运营？", "결과 안내": "结果说明", "참고": "说明",
       "답변은 현재 페이지에서 계산하고 저장하지 않습니다.": "答案仅在当前页面处理，不会保存。", "홈으로": "返回首页", "개선 의견": "反馈建议", "개인정보": "隐私",
@@ -269,9 +297,9 @@
       meta.content = map[meta.content] || descriptionMap[valid]?.[meta.content] || meta.content;
     });
     const pageTitles = {
-      en: { "index.html": "molgga | Free MBTI & Quizzes", "worldcup.html": "Weekend Matchup: Your Ideal Weekend | molgga", "animal-test.html": "Animal Personality Quiz | molgga", "mbti.html": "MBTI Quiz | molgga", "teto-egen-test.html": "Teto/Egen Quiz | molgga", "attachment-test.html": "Attachment Style Quiz | molgga", "past-life-test.html": "Past Life Quiz | molgga", "about.html": "About molgga", "contact.html": "Contact molgga", "privacy.html": "Privacy Policy | molgga", "terms.html": "Terms of Use | molgga", "404.html": "Page Not Found | molgga" },
-      ja: { "index.html": "molgga｜無料MBTI・好みテスト", "worldcup.html": "週末の理想マッチ | molgga", "animal-test.html": "動物タイプ診断 | molgga", "mbti.html": "MBTIクイズ | molgga", "teto-egen-test.html": "テト／エゲン診断 | molgga", "attachment-test.html": "愛着スタイル診断 | molgga", "past-life-test.html": "前世診断 | molgga", "about.html": "molggaについて", "contact.html": "お問い合わせ | molgga", "privacy.html": "プライバシーポリシー | molgga", "terms.html": "利用案内 | molgga", "404.html": "ページが見つかりません | molgga" },
-      zh: { "index.html": "molgga｜免费MBTI与偏好测试", "worldcup.html": "周末理想选择赛 | molgga", "animal-test.html": "动物性格测试 | molgga", "mbti.html": "MBTI 测试 | molgga", "teto-egen-test.html": "Teto/Egen 测试 | molgga", "attachment-test.html": "依恋类型测试 | molgga", "past-life-test.html": "前世测试 | molgga", "about.html": "关于 molgga", "contact.html": "联系 molgga", "privacy.html": "隐私政策 | molgga", "terms.html": "使用条款 | molgga", "404.html": "页面未找到 | molgga" }
+      en: { "index.html": "molgga | Free MBTI & Quizzes", "worldcup.html": "Weekend Matchup: What Should I Do This Weekend? | molgga", "late-night-worldcup.html": "Late-night Food Matchup: What Are You Craving? | molgga", "animal-test.html": "Animal Personality Quiz | molgga", "mbti.html": "MBTI Quiz | molgga", "teto-egen-test.html": "Teto/Egen Quiz | molgga", "attachment-test.html": "Attachment Style Quiz | molgga", "past-life-test.html": "Past Life Quiz | molgga", "about.html": "About molgga", "contact.html": "Contact molgga", "privacy.html": "Privacy Policy | molgga", "terms.html": "Terms of Use | molgga", "404.html": "Page Not Found | molgga" },
+      ja: { "index.html": "molgga｜無料MBTI・好みテスト", "worldcup.html": "週末マッチ：今週末は何をしよう？ | molgga", "late-night-worldcup.html": "夜食マッチ：今夜食べたいのはどれ？ | molgga", "animal-test.html": "動物タイプ診断 | molgga", "mbti.html": "MBTIクイズ | molgga", "teto-egen-test.html": "テト／エゲン診断 | molgga", "attachment-test.html": "愛着スタイル診断 | molgga", "past-life-test.html": "前世診断 | molgga", "about.html": "molggaについて", "contact.html": "お問い合わせ | molgga", "privacy.html": "プライバシーポリシー | molgga", "terms.html": "利用案内 | molgga", "404.html": "ページが見つかりません | molgga" },
+      zh: { "index.html": "molgga｜免费MBTI与偏好测试", "worldcup.html": "周末选择赛：这周末做什么？ | molgga", "late-night-worldcup.html": "夜宵选择赛：今晚想吃什么？ | molgga", "animal-test.html": "动物性格测试 | molgga", "mbti.html": "MBTI 测试 | molgga", "teto-egen-test.html": "Teto/Egen 测试 | molgga", "attachment-test.html": "依恋类型测试 | molgga", "past-life-test.html": "前世测试 | molgga", "about.html": "关于 molgga", "contact.html": "联系 molgga", "privacy.html": "隐私政策 | molgga", "terms.html": "使用条款 | molgga", "404.html": "页面未找到 | molgga" }
     };
     const path = location.pathname.split("/").pop() || "index.html";
     if (pageTitles[valid]?.[path]) document.title = pageTitles[valid][path];

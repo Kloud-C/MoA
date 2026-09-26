@@ -1,6 +1,16 @@
 (() => {
   const locale = (ko, en, ja, zh) => ({ ko, en, ja, zh });
   const image = (folder, id, extension = "webp") => `../image/worldcup/${folder}/${id}.${extension}`;
+  const weekendActivities = {
+    "movie-night": locale("좋아하는 영화 한 편과 간식을 곁들여 느긋하게 쉬어요.", "Unwind with a favorite movie and a snack.", "好きな映画とおやつで、ゆっくり過ごします。", "看一部喜欢的电影，配上零食慢慢放松。"),
+    "new-restaurant": locale("새로운 메뉴를 맛보며 동네의 작은 발견을 즐겨요.", "Try a new dish and discover a neighborhood spot.", "新しいメニューを味わいながら、街の小さなお店を見つけます。", "尝尝新菜，也发现附近一家有趣的小店。"),
+    "forest-walk": locale("천천히 걸으며 바깥 공기와 계절 풍경을 즐겨요.", "Take an easy walk and enjoy the fresh air and scenery.", "のんびり歩きながら、外の空気と季節の景色を楽しみます。", "慢慢散步，感受新鲜空气和季节风景。"),
+    "favorite-hobby": locale("좋아하는 취미에 몰입하며 나만의 시간을 가져요.", "Make some time to get absorbed in a favorite hobby.", "好きな趣味にじっくり取り組む、自分だけの時間です。", "沉浸在喜欢的爱好里，享受自己的时间。"),
+    "cafe-chat": locale("커피 한 잔을 두고 친구와 밀린 이야기를 나눠요.", "Catch up with a friend over a cup of coffee.", "コーヒーを飲みながら、友達と積もる話をします。", "和朋友喝杯咖啡，聊聊最近的近况。"),
+    "short-drive": locale("가까운 풍경을 보러 잠깐 길을 나서 기분을 바꿔요.", "Take a short drive to a nearby view and reset your mood.", "近くの景色を見に少し出かけて、気分を切り替えます。", "开车去附近看看风景，换个心情。"),
+    "cook-at-home": locale("먹고 싶은 메뉴를 직접 만들며 여유로운 시간을 보내요.", "Enjoy a slow afternoon making something you feel like eating.", "食べたいものを自分で作りながら、ゆったり過ごします。", "亲手做想吃的菜，享受悠闲时光。"),
+    "light-exercise": locale("가볍게 몸을 움직여 기분 좋게 활력을 채워요.", "Stretch or move a little to feel refreshed.", "軽く体を動かして、気持ちよくリフレッシュします。", "轻轻活动一下身体，让自己恢复活力。")
+  };
   const weekendNames = [
     ["movie-night", "집에서 좋아하는 영화 보기", "Watch a favorite movie at home", "家で好きな映画を見る", "在家看喜欢的电影"],
     ["new-restaurant", "동네의 새로운 맛집 가기", "Try a new neighborhood restaurant", "近所の新しいお店に行く", "去附近的新餐馆"],
@@ -11,9 +21,10 @@
     ["cook-at-home", "집에서 천천히 요리하기", "Take your time cooking at home", "家でゆっくり料理する", "在家慢慢做饭"],
     ["light-exercise", "가벼운 운동이나 스트레칭하기", "Do light exercise or stretch", "軽い運動やストレッチをする", "做些轻运动或拉伸"]
   ].map(([id, ko, en, ja, zh]) => ({
-    id, name: locale(ko, en, ja, zh),
-    detail: locale("부담 없이 즐길 수 있는 주말 활동이에요.", "A relaxed way to spend part of your weekend.", "気軽に楽しめる週末の過ごし方です。", "轻松享受周末的一种方式。"),
-    image: `../image/my week/${({ "movie-night": "Watch a movie at home", "new-restaurant": "Try a new local restaurant", "forest-walk": "Walk in a park or forest", "favorite-hobby": "Enjoy a favorite hobby", "cafe-chat": "Chat with a friend at a cafe", "short-drive": "Take a nearby drive", "cook-at-home": "Cook at home", "light-exercise": "Do light exercise or stretching" })[id]}.jpg`
+    id,
+    name: locale(ko, en, ja, zh),
+    detail: weekendActivities[id],
+    image: image("weekend-activities", id, "jpg")
   }));
 
   const foodNames = [

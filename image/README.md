@@ -16,13 +16,21 @@
 
 ## 주말 취향 월드컵 이미지
 
-`my week` 폴더에는 8개 선택지 결과 이미지가 있습니다. 파일명을 유지하면 각 선택지의 결과 화면에서 자동으로 연결됩니다. 사진은 Unsplash 라이선스로 무료 사용 가능한 이미지이며, 다음 사진을 사용했습니다.
+`worldcup/weekend-activities` 폴더에는 주말 취향 월드컵의 8개 선택지 이미지가 있습니다. `assets/js/worldcup-data.js`에서 파일 경로를 관리하며, 새 이미지를 교체할 때는 선택지 ID와 같은 파일명을 유지해 주세요. 이미지는 활동에 맞춰 직접 생성한 실사풍 이미지입니다.
 
-- `Watch a movie at home.jpg` — [Vitaly Gariev, Father and son smiling on the couch with popcorn](https://unsplash.com/photos/father-and-son-smiling-on-the-couch-with-popcorn-BQeTqVC07e4)
-- `Try a new local restaurant.jpg` — [Jamie Hagan, people eating at the restaurant](https://unsplash.com/photos/people-eating-at-the-restaurant-e7mg1NUk4FI)
-- `Walk in a park or forest.jpg` — [Forest walk](https://unsplash.com/photos/a-person-walking-down-a-path-in-the-woods-w0xMbgye1G8)
-- `Enjoy a favorite hobby.jpg` — [Vitaly Gariev, A young woman is painting a floral artwork](https://unsplash.com/photos/a-young-woman-is-painting-a-floral-artwork-wLWNtPykZ4M)
-- `Chat with a friend at a cafe.jpg` — [Café conversation](https://unsplash.com/photos/dua-wanita-berbicara-di-sebuah-kafe-sambil-minum-NAd4pJw_yug)
-- `Take a nearby drive.jpg` — [Max Bvp, Man driving a car on a sunny day](https://unsplash.com/photos/man-driving-a-car-on-a-sunny-day-yMwcM3RJevo)
-- `Cook at home.jpg` — [Jason Briscoe, home cooking](https://unsplash.com/photos/mujer-cocinando-dentro-de-la-sala-de-cocina-7MAjXGUmaPw)
-- `Do light exercise or stretching.jpg` — [Living room yoga stretch](https://unsplash.com/photos/a-man-is-doing-yoga-in-a-living-room-tYOjcQ9NzHY)
+- `movie-night.jpg` — 집에서 영화를 보며 쉬는 장면
+- `new-restaurant.jpg` — 동네 식당에서 식사하는 장면
+- `forest-walk.jpg` — 숲길을 걷는 장면
+- `favorite-hobby.jpg` — 집에서 스케치하는 장면
+- `cafe-chat.jpg` — 카페에서 친구와 대화하는 장면
+- `short-drive.jpg` — 근교 전망대에 차를 세우고 풍경을 보는 장면
+- `cook-at-home.jpg` — 집 주방에서 채소를 손질하는 장면
+- `light-exercise.jpg` — 집에서 가볍게 스트레칭하는 장면
+
+## 테토/에겐 결과 이미지
+
+`tests/teto-egen` 폴더의 결과 ID별 JPG를 사용합니다. `assets/js/teto-egen-data.js`의 각 프로필 `image` 경로와 파일 이름을 맞춰 주세요. 8개 장면은 결과마다 다른 인물과 장소로 구성한 생성 이미지입니다.
+
+## 애착 유형 결과 이미지
+
+`tests/attachment-style` 폴더에는 `secure.jpg`, `avoidant.jpg`, `anxious.jpg`, `fearful.jpg`가 있습니다. 각 파일은 `assets/js/attachment-data.js`의 결과 프로필에 연결되어 있습니다. 인물의 성격이나 관계 유형을 단정하는 연출은 피하고, 일상적인 장면을 담았습니다.
